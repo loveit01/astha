@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Birthday Cake Celebration</title>
+
+<style>
+
+:root{
+    --pink:#ff85a2;
+    --dark-pink:#f06292;
+    --cake:#ffe0eb;
+    --bg:#fff5f8;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(to bottom,#fff5f8,#ffe6ef);
+    overflow:hidden;
+    font-family:'Segoe UI',sans-serif;
+}
+
+.container{
+    text-align:center;
+    position:relative;
+    z-index:2;
+}
+
+.title{
+    color:var(--dark-pink);
+    margin-bottom:35px;
+    font-size:2rem;
+    animation:fadeIn 1s ease;
+}
+
+
+
+.cake-container{
+    position:relative;
+    width:240px;
+    height:280px;
+    margin:auto;
+    cursor:pointer;
+}
+
+.cake{
+    position:absolute;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:200px;
+    height:120px;
+    background:var(--cake);
+    border-radius:15px 15px 10px 10px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.cake::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:28px;
+    background:white;
+    border-radius:0 0 20px 20px;
+}
+
+.cake::after{
+    content:"";
+    position:absolute;
+    bottom:15px;
+    left:50%;
+    transform:translateX(-50%);
+    width:140px;
+    height:12px;
+    background:
+    radial-gradient(circle,var(--pink) 45%,transparent 46%) repeat-x;
+    background-size:20px 12px;
+}
+
+.plate{
+    position:absolute;
+    bottom:-12px;
+    left:50%;
+    transform:translateX(-50%);
+    width:240px;
+    height:18px;
+    background:#ddd;
+    border-radius:50px;
+}
+
+
+
+.candle{
+    position:absolute;
+    bottom:118px;
+    left:50%;
+    transform:translateX(-50%);
+    width:18px;
+    height:65px;
+    border-radius:5px;
+
+    background:repeating-linear-gradient(
+        45deg,
+        white,
+        white 6px,
+        var(--pink) 6px,
+        var(--pink) 12px
+    );
+}
+
+.flame{
+    position:absolute;
+    top:-30px;
+    left:50%;
+    transform:translateX(-50%);
+    width:22px;
+    height:34px;
+
+    background:linear-gradient(to bottom,#ffd54f,#ff6f00);
+
+    border-radius:50% 50% 40% 40%;
+    box-shadow:0 0 25px #ff9800;
+
+    animation:flicker .5s infinite alternate;
+}
+
+@keyframes flicker{
+    from{
+        transform:translateX(-50%) scale(1);
+    }
+    to{
+        transform:translateX(-50%) scale(1.1);
+    }
+}
+
+
+
+.bite{
+    position:absolute;
+    top:-15px;
+    right:-10px;
+    width:65px;
+    height:65px;
+    background:#fff5f8;
+    border-radius:50%;
+    display:none;
+}
+
+
+
+.message{
+    margin-top:35px;
+    font-size:1.6rem;
+    color:var(--dark-pink);
+
+    opacity:0;
+    transform:translateY(20px);
+
+    transition:.6s;
+}
+
+.message.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+
+
+.next-btn{
+    margin-top:25px;
+    padding:14px 35px;
+    border:none;
+    border-radius:50px;
+    background:var(--pink);
+    color:white;
+    font-size:1rem;
+    cursor:pointer;
+    display:none;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+    transition:.3s;
+}
+
+.next-btn:hover{
+    transform:scale(1.05);
+}
+
+
+
+.confetti{
+    position:absolute;
+    width:10px;
+    height:10px;
+    background:red;
+    top:-10px;
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(720deg);
+        opacity:0;
+    }
+}
+
+/* BALLOONS */
+
+.balloon{
+    position:absolute;
+    width:50px;
+    height:65px;
+    border-radius:50%;
+    animation:floatUp 6s linear forwards;
+}
+
+.balloon::after{
+    content:"";
+    position:absolute;
+    width:2px;
+    height:60px;
+    background:#999;
+    left:50%;
+    top:60px;
+}
+
+@keyframes floatUp{
+    from{
+        transform:translateY(100vh);
+    }
+    to{
+        transform:translateY(-120vh);
+    }
+}
+
+
+
+.hidden{
+    display:none;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(-10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+
+
+@media(max-width:480px){
+
+    .title{
+        font-size:1.5rem;
+    }
+
+    .cake-container{
+        transform:scale(.9);
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1 class="title" id="title">
+        Make a Wish & Tap the Candle 🎂
+    </h1>
+
+    <div class="cake-container" onclick="cakeAnimation()">
+
+        <div class="candle">
+            <div class="flame" id="flame"></div>
+        </div>
+
+        <div class="cake">
+            <div class="bite" id="bite"></div>
+        </div>
+
+        <div class="plate"></div>
+
+    </div>
+
+    <div class="message" id="message">
+        ✨ Happy Birthday Beautiful ❤️ ✨
+    </div>
+
+    <button class="next-btn" id="nextBtn">
+        Next Surprise ❤️
+    </button>
+
+</div>
+
+<script>
+
+let step = 0;
+
+function cakeAnimation(){
+
+    // FIRST TAP
+    if(step === 0){
+
+        document.getElementById("flame").classList.add("hidden");
+
+        document.getElementById("title").innerText =
+            "Yay!! Celebration Time 🎉";
+
+        startCelebration();
+
+        step = 1;
+    }
+
+    // SECOND TAP
+    else if(step === 1){
+
+        document.getElementById("bite").style.display = "block";
+
+        document.getElementById("message").classList.add("show");
+
+        document.getElementById("title").innerText =
+            "Happy Birthday My Beautiful ❤️";
+
+        document.getElementById("nextBtn").style.display = "inline-block";
+
+        step = 2;
+    }
+}
+
+/* CONFETTI */
+
+function startCelebration(){
+
+    for(let i=0;i<120;i++){
+
+        let confetti = document.createElement("div");
+
+        confetti.classList.add("confetti");
+
+        document.body.appendChild(confetti);
+
+        let colors = [
+            "#ff4d6d",
+            "#ff85a2",
+            "#ffd166",
+            "#06d6a0",
+            "#118ab2",
+            "#9b5de5"
+        ];
+
+        confetti.style.background =
+            colors[Math.floor(Math.random()*colors.length)];
+
+        confetti.style.left = Math.random()*100 + "vw";
+
+        confetti.style.animationDuration =
+            (Math.random()*3 + 2) + "s";
+
+        confetti.style.opacity = Math.random();
+
+        setTimeout(()=>{
+            confetti.remove();
+        },5000);
+    }
+
+    createBalloons();
+}
+
+/* BALLOONS */
+
+function createBalloons(){
+
+    let balloonColors = [
+        "#ff4d6d",
+        "#ff85a2",
+        "#ffd166",
+        "#06d6a0",
+        "#118ab2"
+    ];
+
+    for(let i=0;i<12;i++){
+
+        let balloon = document.createElement("div");
+
+        balloon.classList.add("balloon");
+
+        balloon.style.background =
+            balloonColors[Math.floor(Math.random()*balloonColors.length)];
+
+        balloon.style.left = Math.random()*100 + "vw";
+
+        balloon.style.animationDuration =
+            (Math.random()*3 + 4) + "s";
+
+        document.body.appendChild(balloon);
+
+        setTimeout(()=>{
+            balloon.remove();
+        },7000);
+    }
+}
+
+
+
+document.getElementById("nextBtn").addEventListener("click",()=>{
+
+    
+    window.location.href = "memories.html";
+
+});
+
+</script>
+
+</body>
+</html>
