@@ -128,43 +128,30 @@ h1 span{
 }
 
 .countdown{
-    display:flex;
-    justify-content:center;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:6px;
     align-items:center;
-    gap:25px;
-    flex-wrap:wrap;
+    width:100%;
 }
 
-
-
 .time{
-    text-align:center;
-    min-width:140px;
+    min-width:0;
+    width:100%;
 }
 
 .time h2{
-    font-size:6rem;
-    color:#1976d2;
-    font-weight:700;
-    line-height:1;
-    text-shadow:0 5px 15px rgba(25,118,210,0.15);
+    font-size:2rem;
 }
 
 .time p{
-    margin-top:12px;
-    color:#60758a;
-    font-size:1rem;
-    letter-spacing:4px;
-    font-weight:500;
+    font-size:0.55rem;
+    letter-spacing:1px;
+    margin-top:5px;
 }
 
-
-
 .divider{
-    font-size:5rem;
-    color:#7abfff;
-    margin-top:-20px;
-    font-weight:300;
+    display:none;
 }
 
 
