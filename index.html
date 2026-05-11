@@ -28,7 +28,6 @@ body{
     padding:20px;
 }
 
-
 .glow1,
 .glow2{
     position:absolute;
@@ -51,7 +50,6 @@ body{
     bottom:-100px;
     right:-80px;
 }
-
 
 .float{
     position:absolute;
@@ -77,16 +75,12 @@ body{
     }
 }
 
-
-
 .container{
     text-align:center;
     z-index:5;
     width:100%;
     max-width:1000px;
 }
-
-
 
 .glass-box{
 
@@ -105,8 +99,6 @@ body{
     box-shadow:0 8px 30px rgba(0,0,0,0.08);
 }
 
-
-
 h1{
     font-size:4rem;
     color:#1976d2;
@@ -117,8 +109,6 @@ h1{
 h1 span{
     color:#ff4d6d;
 }
-
-
 
 .subtitle{
     color:#5c7288;
@@ -156,8 +146,6 @@ h1 span{
     display:none;
 }
 
-
-
 .bottom{
     margin-top:65px;
     color:#60758a;
@@ -165,7 +153,37 @@ h1 span{
     font-size:1rem;
 }
 
-/* Mobile Responsive changed according .... kitna baar change kaena hoga */
+
+
+.surprise-btn{
+    display:none;
+    margin-top:35px;
+    padding:14px 32px;
+    background:linear-gradient(135deg,#ff4d6d,#ff758f);
+    color:white;
+    text-decoration:none;
+    border-radius:40px;
+    font-size:1rem;
+    font-weight:600;
+    box-shadow:0 8px 25px rgba(255,77,109,0.35);
+    transition:0.3s ease;
+    animation:pop 1s infinite alternate;
+}
+
+.surprise-btn:hover{
+    transform:scale(1.05);
+}
+
+@keyframes pop{
+    from{
+        transform:scale(1);
+    }
+    to{
+        transform:scale(1.06);
+    }
+}
+
+/* Mobile Responsive */
 
 @media(max-width:768px){
 
@@ -192,7 +210,7 @@ h1 span{
         display:flex;
         justify-content:center;
         align-items:center;
-        flex-wrap:nowrap;   /* keeps all in one line */
+        flex-wrap:nowrap;
         gap:8px;
     }
 
@@ -222,6 +240,11 @@ h1 span{
         font-size:0.82rem;
         line-height:1.8;
     }
+
+    .surprise-btn{
+        font-size:0.9rem;
+        padding:12px 24px;
+    }
 }
 
 </style>
@@ -232,11 +255,9 @@ h1 span{
 <div class="glow1"></div>
 <div class="glow2"></div>
 
-
 <div id="floating"></div>
 
 <div class="container">
-
 
     <div class="glass-box">
 
@@ -249,9 +270,7 @@ h1 span{
             Something special is waiting for you 💖
             <br>
 
-            
-      Just a little patience… your surprise is almost here ✨
-    
+            Just a little patience… your surprise is almost here ✨
 
         </p>
 
@@ -287,6 +306,10 @@ h1 span{
 
 
 
+        <a href="cake.html" id="surpriseBtn" class="surprise-btn">
+            Open Your Surprise 🎂
+        </a>
+
         <div class="bottom">
 
             June 30 isn’t just another date for me 💙
@@ -297,6 +320,7 @@ h1 span{
 
             So until that day arrives…
             I’ll keep counting every second with a smile ❤️
+
         </div>
 
     </div>
@@ -338,7 +362,6 @@ for(let i=0;i<40;i++){
     floating.appendChild(item);
 }
 
-
 const birthday =
 new Date("June 30, 2026 00:00:00").getTime();
 
@@ -379,6 +402,16 @@ setInterval(function(){
 
     document.getElementById("seconds")
     .innerHTML = seconds;
+
+    if(distance <= 0){
+
+        document.getElementById("days").innerHTML = "00";
+        document.getElementById("hours").innerHTML = "00";
+        document.getElementById("minutes").innerHTML = "00";
+        document.getElementById("seconds").innerHTML = "00";
+
+        document.getElementById("surpriseBtn").style.display = "inline-block";
+    }
 
 },1000);
 
