@@ -1,119 +1,385 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>For You ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-      padding: 20px;
+<title>Astha ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    overflow:hidden;
+    background:linear-gradient(to bottom,#dff4ff,#bde7ff,#eef9ff);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    padding:20px;
+}
+
+
+.glow1,
+.glow2{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(100px);
+}
+
+.glow1{
+    width:320px;
+    height:320px;
+    background:rgba(0,140,255,0.18);
+    top:-120px;
+    left:-100px;
+}
+
+.glow2{
+    width:280px;
+    height:280px;
+    background:rgba(255,255,255,0.7);
+    bottom:-100px;
+    right:-80px;
+}
+
+
+.float{
+    position:absolute;
+    top:-50px;
+    animation:fall linear infinite;
+    opacity:0.85;
+}
+
+@keyframes fall{
+
+    0%{
+        transform:translateY(-10vh) rotate(0deg);
+        opacity:0;
     }
 
-    img {
-      width: 90%;
-      max-width: 300px;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      animation: fadeIn 2s ease-in-out;
+    10%{
+        opacity:1;
     }
 
-    h1 {
-      margin-top: 20px;
-      font-size: 1.5rem;
-      color: #ff4d88;
-      animation: fadeIn 3s ease-in-out;
+    100%{
+        transform:translateY(120vh) rotate(360deg);
+        opacity:1;
+    }
+}
+
+
+
+.container{
+    text-align:center;
+    z-index:5;
+    width:100%;
+    max-width:1000px;
+}
+
+
+
+.glass-box{
+
+    background:rgba(255,255,255,0.18);
+
+    backdrop-filter:blur(14px);
+
+    -webkit-backdrop-filter:blur(14px);
+
+    border:1px solid rgba(255,255,255,0.25);
+
+    border-radius:35px;
+
+    padding:45px 30px;
+
+    box-shadow:0 8px 30px rgba(0,0,0,0.08);
+}
+
+
+
+h1{
+    font-size:4rem;
+    color:#1976d2;
+    margin-bottom:15px;
+    font-weight:700;
+}
+
+h1 span{
+    color:#ff4d6d;
+}
+
+
+
+.subtitle{
+    color:#5c7288;
+    font-size:1.08rem;
+    line-height:2;
+    margin-bottom:65px;
+}
+
+.countdown{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+
+
+.time{
+    text-align:center;
+    min-width:140px;
+}
+
+.time h2{
+    font-size:6rem;
+    color:#1976d2;
+    font-weight:700;
+    line-height:1;
+    text-shadow:0 5px 15px rgba(25,118,210,0.15);
+}
+
+.time p{
+    margin-top:12px;
+    color:#60758a;
+    font-size:1rem;
+    letter-spacing:4px;
+    font-weight:500;
+}
+
+
+
+.divider{
+    font-size:5rem;
+    color:#7abfff;
+    margin-top:-20px;
+    font-weight:300;
+}
+
+
+
+.bottom{
+    margin-top:65px;
+    color:#60758a;
+    line-height:2.3;
+    font-size:1rem;
+}
+
+/* Mobile Responsive */
+
+@media(max-width:768px){
+
+    .glass-box{
+        padding:30px 18px;
+        border-radius:28px;
     }
 
-    p {
-      font-size: 1rem;
-      color: #555;
-      margin: 10px 0 20px;
-      animation: fadeIn 4s ease-in-out;
+    h1{
+        font-size:2.7rem;
     }
 
-    #timer {
-      font-size: 2rem;
-      font-weight: bold;
-      color: #ff4d88;
-      margin: 20px;
+    .subtitle{
+        font-size:0.95rem;
+        margin-bottom:40px;
+        line-height:1.9;
     }
 
-    button {
-      padding: 12px 25px;
-      font-size: 16px;
-      background: #ff4d88;
-      color: white;
-      border: none;
-      border-radius: 25px;
-      display: none;
-      animation: pop 0.5s ease forwards;
+    .countdown{
+        gap:18px;
     }
 
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1;}
+    .time{
+        min-width:120px;
     }
 
-    @keyframes pop {
-      from {transform: scale(0);}
-      to {transform: scale(1);}
+    .time h2{
+        font-size:3.6rem;
     }
-  </style>
+
+    .time p{
+        font-size:0.8rem;
+        letter-spacing:2px;
+    }
+
+    .divider{
+        display:none;
+    }
+
+    .bottom{
+        margin-top:40px;
+        font-size:0.92rem;
+        line-height:2;
+    }
+}
+
+</style>
 </head>
 
 <body>
 
-<img src="gift.jpg" alt="Gift 🎁">
+<div class="glow1"></div>
+<div class="glow2"></div>
 
-<h1>Something special is waiting for you 💖</h1>
-<p>Just a little patience… your surprise is almost here ✨</p>
 
-<div id="timer"></div>
+<div id="floating"></div>
 
-<button id="enterBtn" onclick="goNext()">Open Your Surprise 🎁</button>
+<div class="container">
+
+
+    <div class="glass-box">
+
+        <h1>
+            Astha <span>❤️</span>
+        </h1>
+
+        <p class="subtitle">
+
+            Something special is waiting for you 💖
+            <br>
+
+            
+      Just a little patience… your surprise is almost here ✨
+    
+
+        </p>
+
+        <div class="countdown">
+
+            <div class="time">
+                <h2 id="days">00</h2>
+                <p>DAYS</p>
+            </div>
+
+            <div class="divider">:</div>
+
+            <div class="time">
+                <h2 id="hours">00</h2>
+                <p>HOURS</p>
+            </div>
+
+            <div class="divider">:</div>
+
+            <div class="time">
+                <h2 id="minutes">00</h2>
+                <p>MINUTES</p>
+            </div>
+
+            <div class="divider">:</div>
+
+            <div class="time">
+                <h2 id="seconds">00</h2>
+                <p>SECONDS</p>
+            </div>
+
+        </div>
+
+
+
+        <div class="bottom">
+
+            June 30 isn’t just another date for me 💙
+            <br>
+
+            It’s the day someone kind, beautiful, cheerful and unforgettable came into this world 🌼
+            <br><br>
+
+            So until that day arrives…
+            I’ll keep counting every second with a smile ❤️
+        </div>
+
+    </div>
+
+</div>
 
 <script>
 
-  const targetDate = new Date("June 30, 2026 00:00:00").getTime();
+const floating =
+document.getElementById("floating");
 
-  const timer = setInterval(function () {
+const items = [
+    "🌼",
+    "💙",
+    "✨",
+    "🦋",
+    "❤️"
+];
 
-    const now = new Date().getTime();
-    const distance = targetDate - now;
+for(let i=0;i<40;i++){
 
-    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    const item =
+    document.createElement("div");
 
-    document.getElementById("timer").innerHTML =
-      days + "d " +
-      hours + "h " +
-      minutes + "m " +
-      seconds + "s ";
+    item.classList.add("float");
 
-    if (distance < 0) {
-      clearInterval(timer);
+    item.innerHTML =
+    items[Math.floor(Math.random()*items.length)];
 
-      document.getElementById("timer").innerHTML = "It's time ❤️";
+    item.style.left =
+    Math.random()*100 + "vw";
 
-      document.getElementById("enterBtn").style.display = "inline-block";
-    }
+    item.style.fontSize =
+    (Math.random()*18 + 18) + "px";
 
-  }, 1000);
+    item.style.animationDuration =
+    (Math.random()*5 + 5) + "s";
 
-  function goNext() {
-    window.location.href = "cake.html";
-  }
+    floating.appendChild(item);
+}
+
+
+const birthday =
+new Date("June 30, 2026 00:00:00").getTime();
+
+setInterval(function(){
+
+    const now =
+    new Date().getTime();
+
+    const distance =
+    birthday - now;
+
+    const days =
+    Math.floor(distance /
+    (1000*60*60*24));
+
+    const hours =
+    Math.floor((distance %
+    (1000*60*60*24)) /
+    (1000*60*60));
+
+    const minutes =
+    Math.floor((distance %
+    (1000*60*60)) /
+    (1000*60));
+
+    const seconds =
+    Math.floor((distance %
+    (1000*60)) / 1000);
+
+    document.getElementById("days")
+    .innerHTML = days;
+
+    document.getElementById("hours")
+    .innerHTML = hours;
+
+    document.getElementById("minutes")
+    .innerHTML = minutes;
+
+    document.getElementById("seconds")
+    .innerHTML = seconds;
+
+},1000);
 
 </script>
 
