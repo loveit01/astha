@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Letter For You ❤️</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:linear-gradient(180deg,#08122c,#0d1d45,#08122c);
+    min-height:100vh;
+    color:white;
+    font-family:'Georgia',serif;
+    overflow-x:hidden;
+}
+
+.container{
+    max-width:850px;
+    margin:auto;
+    padding:60px 25px;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.title h1{
+    font-size:3rem;
+    margin-bottom:10px;
+}
+
+.title p{
+    opacity:.8;
+}
+
+.letter{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(10px);
+    padding:40px;
+    border-radius:25px;
+    line-height:2;
+    font-size:1.1rem;
+    box-shadow:0 10px 40px rgba(0,0,0,.4);
+    animation:fadeIn 1.5s ease;
+}
+
+.signature{
+    margin-top:40px;
+    text-align:right;
+    font-size:1.2rem;
+}
+
+.final-btn{
+    display:block;
+    width:max-content;
+    margin:50px auto;
+    padding:15px 35px;
+    text-decoration:none;
+    color:white;
+    background:#ff4d8d;
+    border-radius:999px;
+    transition:.3s;
+    font-weight:bold;
+}
+
+.final-btn:hover{
+    transform:translateY(-4px);
+}
+
+.star{
+    position:fixed;
+    color:white;
+    opacity:.25;
+    animation:float linear infinite;
+    pointer-events:none;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(0);
+    }
+    to{
+        transform:translateY(-120vh);
+    }
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="title">
+        <h1>💌 A Letter For You</h1>
+        <p>Read till the end ❤️</p>
+    </div>
+
+    <div class="letter">
+
+        Dear Astha,
+
+        <br><br>
+
+        Happy Birthday ❤️
+
+        <br><br>
+
+        I wanted to do something different this year.
+
+        Anyone can send a birthday text,
+        but I wanted to make something that would stay with you a little longer.
+
+        <br><br>
+
+        That's why this little website exists.
+
+        <br><br>
+
+        While making it, I went through old chats,
+        screenshots, calls, memories and moments.
+
+        Some made me smile.
+
+        Some made me laugh.
+
+        And some made my chest feel heavy because of how much they meant to me.
+
+        <br><br>
+
+        Thank you for every conversation.
+
+        Thank you for every update.
+
+        Thank you for every game.
+
+        Thank you for every good morning and good night.
+
+        Thank you for all the little moments that slowly became part of my day.
+
+        <br><br>
+
+        You probably don't realize it,
+        but many ordinary days became special because you were there.
+
+        <br><br>
+
+        I know life gets busy.
+
+        People change.
+
+        Situations change.
+
+        But some memories remain special no matter how much time passes.
+
+        <br><br>
+
+        And I'm grateful for every one of ours.
+
+        <br><br>
+
+        Today isn't about the past though.
+
+        Today is about you.
+
+        <br><br>
+
+        I hope this year brings you happiness.
+
+        I hope it brings you success.
+
+        I hope it brings you peace.
+
+        I hope it brings you countless reasons to smile.
+
+        <br><br>
+
+        I hope all your wishes come true.
+
+        <br><br>
+
+        And whenever life feels difficult,
+        please remember that you're stronger than you think.
+
+        <br><br>
+
+        Thank you for being you.
+
+        <br><br>
+
+        Happy Birthday, Birthday Girl ❤️
+
+        <div class="signature">
+            — Anki ✨
+        </div>
+
+    </div>
+
+    <a href="final.html" class="final-btn">
+        One Last Message ✨
+    </a>
+
+</div>
+
+<script>
+
+for(let i=0;i<40;i++){
+
+    let star=document.createElement("div");
+
+    star.className="star";
+    star.innerHTML="✦";
+
+    star.style.left=Math.random()*100+"vw";
+    star.style.bottom="-20px";
+    star.style.fontSize=(10+Math.random()*15)+"px";
+    star.style.animationDuration=(8+Math.random()*10)+"s";
+
+    document.body.appendChild(star);
+}
+
+</script>
+
+</body>
+</html>
