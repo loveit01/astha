@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Things That Remind Me Of You ❤️</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#08122c,#132b5f);
+    color:white;
+    min-height:100vh;
+    padding:40px 20px;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    opacity:.8;
+    margin-bottom:40px;
+}
+
+.grid{
+    max-width:1000px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:rgba(255,255,255,.08);
+    border-radius:20px;
+    padding:25px;
+    text-align:center;
+    cursor:pointer;
+    transition:.3s;
+    min-height:180px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.hidden{
+    display:none;
+    margin-top:10px;
+    line-height:1.6;
+}
+
+.card.open .hidden{
+    display:block;
+}
+
+.card.open .tap{
+    display:none;
+}
+
+.final-card{
+    max-width:600px;
+    margin:50px auto;
+    background:rgba(255,255,255,.1);
+    padding:30px;
+    border-radius:25px;
+    text-align:center;
+}
+
+.next-btn{
+    display:inline-block;
+    margin-top:35px;
+    padding:15px 30px;
+    border-radius:50px;
+    text-decoration:none;
+    color:white;
+    background:#ff4d8d;
+    transition:.3s;
+}
+
+.next-btn:hover{
+    transform:scale(1.05);
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>🎁 Things That Remind Me Of You</h1>
+
+<p class="subtitle">
+Every person leaves little things behind in our memories.
+These are yours ❤️
+</p>
+
+<div class="grid">
+
+<div class="card" onclick="openCard(this)">
+    <h2>🌸 Jasmine</h2>
+    <p class="tap">Tap to open</p>
+    <div class="hidden">
+        Your favorite flower.
+    </div>
+</div>
+
+<div class="card" onclick="openCard(this)">
+    <h2>🎧 Harleys In Hawaii</h2>
+    <p class="tap">Tap to open</p>
+    <div class="hidden">
+        Can't hear this song without thinking of you.
+    </div>
+</div>
+
+<div class="card" onclick="openCard(this)">
+    <h2>✨ Jhumka</h2>
+    <p class="tap">Tap to open</p>
+    <div class="hidden">
+        The earring wali picture ❤️
+    </div>
+</div>
+
+<div class="card" onclick="openCard(this)">
+    <h2>🍝 White Sauce Pasta</h2>
+    <p class="tap">Tap to open</p>
+    <div class="hidden">
+        Comfort food approved by Astha.
+    </div>
+</div>
+
+<div class="card" onclick="openCard(this)">
+    <h2>🥣 Pani Puri</h2>
+    <p class="tap">Tap to open</p>
+    <div class="hidden">
+        One plate is never enough.
+    </div>
+</div>
+
+<div class="card" onclick="openCard(this)">
+    <h2>🍫 Chocolates</h2>
+    <p class="tap">Tap to open</p>
+    <div class="hidden">
+        Dairy Milk Fruit & Nut<br>
+        Bournville Cranberry 70%
+    </div>
+</div>
+
+<div class="card" onclick="openCard(this)">
+    <h2>🎮 BGMI</h2>
+    <p class="tap">Tap to open</p>
+    <div class="hidden">
+        So many memories started here.
+    </div>
+</div>
+
+<div class="card" onclick="openCard(this)">
+    <h2>🔫 AKM</h2>
+    <p class="tap">Tap to open</p>
+    <div class="hidden">
+        The favorite weapon of the birthday girl.
+    </div>
+</div>
+
+</div>
+
+<div class="final-card">
+
+<h2>❤️ One More Thing...</h2>
+
+<br>
+
+<p>
+All these things remind me of you.
+But my favorite thing isn't jasmine,
+or pasta, or BGMI.
+</p>
+
+<br>
+
+<h2>You.</h2>
+
+<a href="letter.html" class="next-btn">
+Final Surprise ❤️
+</a>
+
+</div>
+
+<script>
+function openCard(card){
+    card.classList.toggle("open");
+}
+</script>
+
+</body>
+</html>
