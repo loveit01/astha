@@ -1,1728 +1,836 @@
+<![CDATA[
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Our Memories ❤️</title>
 
 <style>
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family: Arial, sans-serif;
+    font-family:'Poppins', Arial, sans-serif;
+}
+
+:root{
+    --x:50%;
+    --y:50%;
+    --bg1:#040814;
+    --bg2:#0c1d48;
+    --bg3:#170f36;
+    --blue:#6dbdff;
+    --cyan:#97f3ff;
+    --violet:#b399ff;
+    --pink:#ff88cb;
+    --text:#f7fbff;
+    --muted:rgba(255,255,255,.74);
+}
+
+html,body{
+    width:100%;
+    min-height:100%;
 }
 
 body{
-    background:linear-gradient(to bottom,#08122c,#0d1d45);
-    color:white;
+    min-height:100svh;
     overflow-x:hidden;
+    background:
+        radial-gradient(circle at var(--x) var(--y), rgba(151,243,255,.10), transparent 14%),
+        radial-gradient(circle at 14% 10%, rgba(109,189,255,.14), transparent 22%),
+        radial-gradient(circle at 86% 16%, rgba(179,153,255,.14), transparent 20%),
+        radial-gradient(circle at 50% 92%, rgba(255,136,203,.08), transparent 26%),
+        linear-gradient(180deg,var(--bg1),var(--bg2),var(--bg3));
+    color:var(--text);
+    position:relative;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:radial-gradient(circle at center, rgba(255,255,255,.04), transparent 60%);
+    pointer-events:none;
+    z-index:0;
+}
+
+.sky{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:0;
+}
+
+.floaty,.bg-heart,.bg-emoji{
+    position:absolute;
+    animation:floatUp linear infinite;
+    pointer-events:none;
+}
+
+.floaty{ color:rgba(255,255,255,.22); }
+.bg-heart{
+    color:rgba(255,136,203,.16);
+    text-shadow:0 0 12px rgba(255,136,203,.10);
+}
+.bg-emoji{
+    opacity:.12;
+    filter:drop-shadow(0 0 10px rgba(255,255,255,.05));
+}
+
+.orb{
+    position:absolute;
+    width:34vmax;
+    height:34vmax;
+    border-radius:50%;
+    filter:blur(50px);
+    opacity:.2;
+    animation:drift 16s ease-in-out infinite;
+}
+
+.orb.one{background:#4eaaff; left:-10%; top:6%;}
+.orb.two{background:#ad95ff; right:-10%; top:14%; animation-delay:-5s;}
+.orb.three{background:#ff88cb; left:28%; bottom:-16%; animation-delay:-9s;}
+
+.cursor-light{
+    position:fixed;
+    width:220px;
+    height:220px;
+    left:0;
+    top:0;
+    border-radius:50%;
+    transform:translate(-50%,-50%);
+    pointer-events:none;
+    background:radial-gradient(circle, rgba(255,255,255,.18), rgba(109,189,255,.10) 32%, rgba(255,255,255,0) 70%);
+    mix-blend-mode:screen;
+    z-index:1;
 }
 
 .header{
     position:sticky;
     top:0;
-    z-index:100;
-    background:#111f45;
-    padding:15px;
+    z-index:10;
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    background:rgba(8,18,44,.72);
+    border-bottom:1px solid rgba(255,255,255,.08);
+    box-shadow:0 8px 24px rgba(0,0,0,.22);
+}
+
+.header-inner{
+    width:min(1180px,100%);
+    margin:auto;
+    padding:14px 16px;
     display:flex;
     align-items:center;
     gap:12px;
-    box-shadow:0 2px 15px rgba(0,0,0,.4);
 }
 
 .profile{
-    width:55px;
-    height:55px;
+    width:56px;
+    height:56px;
     border-radius:50%;
     object-fit:cover;
-    border:2px solid #ff69b4;
-}
-.next-btn{
-    display:inline-block;
-    padding:14px 30px;
-    background:linear-gradient(45deg,#ff69b4,#ff4d6d);
-    color:white;
-    text-decoration:none;
-    border-radius:50px;
-    font-weight:bold;
-    transition:.3s;
-    box-shadow:0 0 20px rgba(255,105,180,.4);
+    border:2px solid var(--pink);
+    box-shadow:0 0 20px rgba(255,136,203,.22);
 }
 
-.next-btn:hover{
-    transform:translateY(-3px) scale(1.05);
-}
 .name{
-    font-size:18px;
-    font-weight:bold;
+    font-size:1.05rem;
+    font-weight:600;
 }
 
 .username{
-    font-size:13px;
-    opacity:.7;
+    font-size:.84rem;
+    color:var(--muted);
+    margin-top:2px;
 }
 
-.chat-container{
-    max-width:700px;
+.container{
+    width:min(1180px,100%);
     margin:auto;
-    padding:20px 12px 120px;
+    padding:30px 16px 56px;
+    position:relative;
+    z-index:2;
+}
+
+.hero{
+    text-align:center;
+    margin-bottom:26px;
+    animation:fadeUp .9s ease;
+}
+
+.eyebrow{
+    display:inline-block;
+    padding:8px 14px;
+    border-radius:999px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.08);
+    color:rgba(255,255,255,.78);
+    font-size:.8rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    margin-bottom:14px;
+}
+
+h1{
+    font-size:clamp(2.2rem,7vw,4rem);
+    margin-bottom:12px;
+    line-height:1.06;
+    text-shadow:0 0 24px rgba(109,189,255,.16);
+}
+
+.subtitle{
+    max-width:760px;
+    margin:auto;
+    color:var(--muted);
+    line-height:1.8;
+    font-size:clamp(.98rem,2.6vw,1.05rem);
+}
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
 }
 
 .memory{
-    margin-bottom:50px;
-    text-align:center;
-    animation:fadeIn 1s ease;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:26px;
+    overflow:hidden;
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    box-shadow:0 16px 36px rgba(0,0,0,.22);
+    transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+    position:relative;
+    transform-style:preserve-3d;
 }
 
-.screenshot{
-    width:100%;
-    max-width:320px;
-    margin:auto;
-    border-radius:20px;
+.memory::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        radial-gradient(circle at var(--x) var(--y), rgba(255,255,255,.14), transparent 14%),
+        linear-gradient(135deg, rgba(109,189,255,.08), rgba(179,153,255,.06), rgba(255,136,203,.05));
+    pointer-events:none;
+    z-index:1;
+}
+
+.memory:hover{
+    transform:translateY(-6px);
+    box-shadow:0 22px 44px rgba(0,0,0,.28);
+    border-color:rgba(255,255,255,.14);
+}
+
+.thumb{
+    position:relative;
+    aspect-ratio:4/5;
     overflow:hidden;
     cursor:pointer;
-    transition:.3s;
-    box-shadow:0 10px 30px rgba(0,0,0,.5);
+    background:#0b1020;
 }
 
-.screenshot:hover{
-    transform:scale(1.03);
-}
-
-.screenshot img{
+.thumb img{
     width:100%;
+    height:100%;
+    object-fit:cover;
     display:block;
+    transition:transform .4s ease;
 }
 
-.show-btn{
-    margin-top:15px;
-    background:#23356e;
-    color:white;
+.memory:hover .thumb img{
+    transform:scale(1.04);
+}
+
+.memory-body{
+    position:relative;
+    z-index:2;
+    padding:16px;
+}
+
+.memory-title{
+    font-size:1.05rem;
+    font-weight:600;
+    margin-bottom:6px;
+}
+
+.memory-sub{
+    color:var(--muted);
+    font-size:.9rem;
+    line-height:1.6;
+    margin-bottom:12px;
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:10px 14px;
     border:none;
-    padding:12px 20px;
     border-radius:999px;
+    color:white;
+    text-decoration:none;
     cursor:pointer;
-    transition:.3s;
-    font-size:14px;
+    font-weight:600;
+    transition:.25s ease;
+    font-size:.88rem;
 }
 
-.show-btn:hover{
-    transform:scale(1.05);
+.btn.primary{
+    background:linear-gradient(90deg,var(--blue),var(--violet));
+    box-shadow:0 10px 24px rgba(109,189,255,.22);
+}
+
+.btn.secondary{
+    background:rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.10);
+}
+
+.btn:hover{
+    transform:translateY(-2px) scale(1.02);
 }
 
 .context{
-    display:none;
-    margin-top:15px;
-    background:#162655;
-    padding:15px;
-    border-radius:18px;
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+    transform:translateY(10px);
+    transition:max-height .45s ease, opacity .3s ease, transform .3s ease, margin-top .3s ease;
+    margin-top:0;
+    color:rgba(255,255,255,.92);
     line-height:1.7;
-    text-align:left;
-    animation:fadeIn .4s ease;
+    font-size:.93rem;
 }
 
-.fullscreen{
+.memory.open .context{
+    max-height:180px;
+    opacity:1;
+    transform:translateY(0);
+    margin-top:12px;
+}
+
+.footer-card{
+    margin-top:30px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:30px;
+    padding:28px 22px;
+    text-align:center;
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    box-shadow:0 18px 40px rgba(0,0,0,.24);
+    position:relative;
+    overflow:hidden;
+}
+
+.footer-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle at var(--x) var(--y), rgba(255,255,255,.10), transparent 16%);
+    pointer-events:none;
+}
+
+.footer-card h2,
+.footer-card p,
+.footer-actions{
+    position:relative;
+    z-index:2;
+}
+
+.footer-card h2{
+    font-size:clamp(1.5rem,4vw,2rem);
+    margin-bottom:10px;
+}
+
+.footer-card p{
+    color:rgba(255,255,255,.82);
+    line-height:1.8;
+    max-width:700px;
+    margin:0 auto;
+}
+
+.footer-actions{
+    margin-top:22px;
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.lightbox{
     position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,.95);
+    inset:0;
+    background:rgba(0,0,0,.92);
     display:none;
     justify-content:center;
     align-items:center;
     z-index:9999;
-    padding:20px;
+    padding:14px;
 }
 
-.fullscreen img{
+.lightbox.open{
+    display:flex;
+}
+
+.lightbox-inner{
+    max-width:1000px;
+    width:100%;
+    position:relative;
+    text-align:center;
+}
+
+.lightbox img{
     max-width:100%;
-    max-height:95%;
-    border-radius:15px;
+    max-height:84vh;
+    object-fit:contain;
+    border-radius:18px;
+    box-shadow:0 18px 50px rgba(0,0,0,.45);
+    background:#0b1020;
 }
 
 .close{
     position:absolute;
-    top:20px;
-    right:25px;
-    font-size:40px;
+    top:-6px;
+    right:0;
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,.12);
+    color:white;
+    font-size:24px;
     cursor:pointer;
 }
 
-.footer{
-    text-align:center;
-    padding:30px;
-    opacity:.7;
-    font-size:14px;
+.lightbox-caption{
+    margin-top:12px;
+    color:rgba(255,255,255,.75);
+    line-height:1.7;
+    font-size:.95rem;
+}
+
+.spark,.heart{
+    position:fixed;
+    pointer-events:none;
+    z-index:10000;
+    transform:translate(-50%,-50%);
+}
+
+.spark{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(255,255,255,1), rgba(255,255,255,0));
+    animation:spark .9s ease forwards;
 }
 
 .heart{
-    position:fixed;
-    bottom:-20px;
-    animation:float linear infinite;
-    opacity:.3;
-    pointer-events:none;
+    font-size:18px;
+    animation:heartRise 1.45s ease forwards;
+    filter:drop-shadow(0 0 10px rgba(255,136,203,.32));
 }
 
-@keyframes float{
-    from{
-        transform:translateY(0);
-    }
-    to{
-        transform:translateY(-120vh);
-    }
+@keyframes floatUp{
+    from{transform:translateY(0) rotate(0deg);}
+    to{transform:translateY(-120vh) rotate(180deg);}
 }
 
-@keyframes fadeIn{
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+@keyframes drift{
+    0%,100%{transform:translate(0,0) scale(1);}
+    50%{transform:translate(24px,-22px) scale(1.08);}
 }
 
+@keyframes fadeUp{
+    from{opacity:0; transform:translateY(24px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes spark{
+    0%{opacity:1; transform:translate(-50%,-50%) scale(.5);}
+    100%{opacity:0; transform:translate(-50%,-50%) scale(3.5);}
+}
+
+@keyframes heartRise{
+    0%{opacity:0; transform:translate(-50%,-50%) scale(.7);}
+    15%{opacity:1;}
+    100%{opacity:0; transform:translate(-50%,-150px) scale(1.4);}
+}
+
+@media (max-width:640px){
+    .cursor-light{
+        width:150px;
+        height:150px;
+    }
+
+    .header-inner{
+        padding:12px;
+    }
+
+    .profile{
+        width:48px;
+        height:48px;
+    }
+
+    .container{
+        padding:24px 12px 40px;
+    }
+
+    .gallery{
+        grid-template-columns:1fr;
+    }
+
+    .memory{
+        border-radius:22px;
+    }
+
+    .footer-card{
+        border-radius:24px;
+    }
+
+    .footer-actions{
+        flex-direction:column;
+    }
+
+    .btn{
+        width:100%;
+    }
+}
 </style>
 </head>
 
 <body>
 
+<div class="sky" id="sky">
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="orb three"></div>
+</div>
+
+<div class="cursor-light" id="cursorLight"></div>
+
 <div class="header">
-
-    <img src="pic.jpg" class="profile">
-
-    <div>
-        <div class="name">Oshurin</div>
-        <div class="username">Oshin</div>
-    </div>
-
-</div>
-<!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="pic.jpg">
-
+    <div class="header-inner">
+        <img src="pic.jpg" class="profile" alt="Profile picture">
+        <div>
+            <div class="name">Oshurin ❤️</div>
+            <div class="username">Oshin</div>
         </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            This is my birthday girl ❤️
-        </div>
-
     </div>
 </div>
-<!-- Screenshot 3 -->
 
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="pic2.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            ear-ring wali pic❤️
-        </div>
-
+<div class="container">
+    <div class="hero">
+        <div class="eyebrow">📸 Tiny moments, big feelings</div>
+        <h1>Our Memories ❤️</h1>
+        <p class="subtitle">
+            A little gallery of moments, screenshots, calls, and feelings that still stay warm in my heart.
+        </p>
     </div>
 
-</div>
+    <div class="gallery">
+        <div class="memory"><div class="thumb" onclick="openImage('pic.jpg','This is my birthday girl ❤️')"><img src="pic.jpg" alt="Birthday girl"></div><div class="memory-body"><div class="memory-title">Birthday Girl ❤️</div><div class="memory-sub">The one this page is for.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('pic.jpg','This is my birthday girl ❤️')">Open</button></div><div class="context">This is my birthday girl ❤️</div></div></div>
 
+        <div class="memory"><div class="thumb" onclick="openImage('pic2.jpg','ear-ring wali pic ❤️')"><img src="pic2.jpg" alt="Earring pic"></div><div class="memory-body"><div class="memory-title">That Pic ✨</div><div class="memory-sub">One detail, one memory.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('pic2.jpg','ear-ring wali pic ❤️')">Open</button></div><div class="context">ear-ring wali pic❤️</div></div></div>
 
-    <!-- Screenshot 3 -->
+        <div class="memory"><div class="thumb" onclick="openImage('ss1.jpg','Aapka daily good night messages 🌙')"><img src="ss1.jpg" alt="Good night screenshot"></div><div class="memory-body"><div class="memory-title">Good Night Texts 🌙</div><div class="memory-sub">Small habit, big feeling.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss1.jpg','Aapka daily good night messages 🌙')">Open</button></div><div class="context">Aapka daily Good Night messages</div></div></div>
 
-    <div class="memory">
+        <div class="memory"><div class="thumb" onclick="openImage('updates.jpg','Jab aap care karte hai ❤️')"><img src="updates.jpg" alt="Updates screenshot"></div><div class="memory-body"><div class="memory-title">Your Updates 💫</div><div class="memory-sub">Care has its own language.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('updates.jpg','Jab aap care karte hai ❤️')">Open</button></div><div class="context">Jab aap care karte hai... mera toh dil bhar jaata hai</div></div></div>
 
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
+        <div class="memory"><div class="thumb" onclick="openImage('ss2.jpg','water duck')"><img src="ss2.jpg" alt="Water duck screenshot"></div><div class="memory-body"><div class="memory-title">Water Duck 🦆</div><div class="memory-sub">Random but memorable.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss2.jpg','water duck')">Open</button></div><div class="context">water duck</div></div></div>
 
-            <img src="ss1.jpg">
+        <div class="memory"><div class="thumb" onclick="openImage('anks.jpg','Anks, Anki, Ankiss ❤️')"><img src="anks.jpg" alt="Nickname screenshot"></div><div class="memory-body"><div class="memory-title">Anks, Anki, Ankiss 💙</div><div class="memory-sub">Some names feel special.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('anks.jpg','Anks, Anki, Ankiss ❤️')">Open</button></div><div class="context">i love this name.. Anks, Anki, Ankiss, Huh Ankit kon</div></div></div>
 
-        </div>
+        <div class="memory"><div class="thumb" onclick="openImage('ss5.jpg','New mode memories 🎮')"><img src="ss5.jpg" alt="Mode screenshot"></div><div class="memory-body"><div class="memory-title">New Mode 🎮</div><div class="memory-sub">Waiting made it special.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss5.jpg','New mode memories 🎮')">Open</button></div><div class="context">Aapke saath new mode explore karne k liye wait karna</div></div></div>
 
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
+        <div class="memory"><div class="thumb" onclick="openImage('call1.jpg','Late night calls ☎️')"><img src="call1.jpg" alt="Call screenshot"></div><div class="memory-body"><div class="memory-title">Late Night Calls ☎️</div><div class="memory-sub">When games ended, talks stayed.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('call1.jpg','Late night calls ☎️')">Open</button></div><div class="context">wo late nights call... jab bhi humlog game mein nahi khel paate the toh call mein baat karke soona</div></div></div>
 
-        <div class="context">
-            Aapka daily Good Night messages
-        </div>
+        <div class="memory"><div class="thumb" onclick="openImage('call2.jpg','Pinned ❤️')"><img src="call2.jpg" alt="Pinned screenshot"></div><div class="memory-body"><div class="memory-title">Pinned ❤️</div><div class="memory-sub">Priority matters.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('call2.jpg','Pinned ❤️')">Open</button></div><div class="context">Aap toh pinned bhi ho mere chat mein... Priority matters❤️</div></div></div>
 
+        <div class="memory"><div class="thumb" onclick="openImage('ss9.jpg','I will cheer up for you ❤️')"><img src="ss9.jpg" alt="Sad moment screenshot"></div><div class="memory-body"><div class="memory-title">That Sad Moment ❤️</div><div class="memory-sub">Your feelings mattered too.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss9.jpg','I will cheer up for you ❤️')">Open</button></div><div class="context">Jab aapka dominator hogaya tha aur mera nahi ho paaya tha tab aap sad the tab hum bhi hue the but still i'll chear up for you ❤️</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss8.jpg','These emotions ❤️')"><img src="ss8.jpg" alt="Emotion screenshot"></div><div class="memory-body"><div class="memory-title">These Emotions ❤️</div><div class="memory-sub">Some feelings stay.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss8.jpg','These emotions ❤️')">Open</button></div><div class="context">These emotions</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss7.jpg','Your wish my command ✨')"><img src="ss7.jpg" alt="Dominator screenshot"></div><div class="memory-body"><div class="memory-title">Your Wish 💫</div><div class="memory-sub">And I meant it.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss7.jpg','Your wish my command ✨')">Open</button></div><div class="context">Aapko Dominator tak jaana tha ... Your wish my command</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss10.jpg','Best memories ❤️')"><img src="ss10.jpg" alt="Best memories"></div><div class="memory-body"><div class="memory-title">Best Memories ❤️</div><div class="memory-sub">Some moments always win.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss10.jpg','Best memories ❤️')">Open</button></div><div class="context">Mera best memories..</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss11.jpg','Dominator firse kare kya?')"><img src="ss11.jpg" alt="Dominator again"></div><div class="memory-body"><div class="memory-title">Again? 🎮</div><div class="memory-sub">Some memories deserve sequels.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss11.jpg','Dominator firse kare kya?')">Open</button></div><div class="context">Dominator firse kare kya?</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss12.jpg','Favorite notification 🎮')"><img src="ss12.jpg" alt="Favorite notification"></div><div class="memory-body"><div class="memory-title">Favorite Notification 🎮</div><div class="memory-sub">Some texts always stand out.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss12.jpg','Favorite notification 🎮')">Open</button></div><div class="context">Aapka raat ko game ka text ka wait karna .. mera fav notification</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss13.jpg','good nightzz 🌙')"><img src="ss13.jpg" alt="Good nightzz"></div><div class="memory-body"><div class="memory-title">Miss Them 🌙</div><div class="memory-sub">Little routines matter most.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss13.jpg','good nightzz 🌙')">Open</button></div><div class="context">aapka good nightzz text aana roz (miss them)</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss14.jpg','Audio call memories ☎️')"><img src="ss14.jpg" alt="Audio call screenshot"></div><div class="memory-body"><div class="memory-title">Audio Calls ☎️</div><div class="memory-sub">Simple but special.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss14.jpg','Audio call memories ☎️')">Open</button></div><div class="context">daily audio call pe baat karna</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss15.jpg','Hinata and Naruto 🫶')"><img src="ss15.jpg" alt="Hinata screenshot"></div><div class="memory-body"><div class="memory-title">Hinata 🫶</div><div class="memory-sub">Cute references stay longer.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss15.jpg','Hinata and Naruto 🫶')">Open</button></div><div class="context">Bole the na aap Hinata ho.. Hi Hinata can i be your Naruto</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss16.jpg','You already won ❤️')"><img src="ss16.jpg" alt="Won already"></div><div class="memory-body"><div class="memory-title">Already Won ❤️</div><div class="memory-sub">Without even trying.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss16.jpg','You already won ❤️')">Open</button></div><div class="context">But aap mera toh kabka jeet chuke ho❤️</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss17.jpg','I feel lucky ✨')"><img src="ss17.jpg" alt="Lucky screenshot"></div><div class="memory-body"><div class="memory-title">Lucky ✨</div><div class="memory-sub">Some posts hit differently.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss17.jpg','I feel lucky ✨')">Open</button></div><div class="context">Jab aap ye post kiye the.. i feel lucky</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss18.jpg','Always here for you 💙')"><img src="ss18.jpg" alt="Always here"></div><div class="memory-body"><div class="memory-title">Always Here 💙</div><div class="memory-sub">That promise still stays.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss18.jpg','Always here for you 💙')">Open</button></div><div class="context">I told ya always here for you</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss20.jpg','Updates matter 💫')"><img src="ss20.jpg" alt="Updates love"></div><div class="memory-body"><div class="memory-title">More Updates 💫</div><div class="memory-sub">I always loved them.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss20.jpg','Updates matter 💫')">Open</button></div><div class="context">i love it jab bhi aap updates dete the</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss21.jpg','Pehli baar aapke liye gaya 🎤')"><img src="ss21.jpg" alt="Song memory"></div><div class="memory-body"><div class="memory-title">The Song 🎤</div><div class="memory-sub">A memory bigger than it looked.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss21.jpg','Pehli baar aapke liye gaya 🎤')">Open</button></div><div class="context">Jisne aaj tak kisi k liye gaana nahi gaya.. wo pheli baar aapke liye gaaya</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss26.jpg','Hukum kijiye ✨')"><img src="ss26.jpg" alt="Promise screenshot"></div><div class="memory-body"><div class="memory-title">Hukum Kijiye ✨</div><div class="memory-sub">Always trying my best.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss26.jpg','Hukum kijiye ✨')">Open</button></div><div class="context">Hukum kijiye... i'll try my best, always</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('gau.jpg','Your updates about people and games ❤️')"><img src="gau.jpg" alt="Game update screenshot"></div><div class="memory-body"><div class="memory-title">Tell Me Everything ❤️</div><div class="memory-sub">Even little things mattered.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('gau.jpg','Your updates about people and games ❤️')">Open</button></div><div class="context">Aap jab bhi batate hai ki aap kiske saath khel rahe ya koi bula diya tha.. i just love it</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss29.jpg','Updates dete rahna ❤️')"><img src="ss29.jpg" alt="Update screenshot"></div><div class="memory-body"><div class="memory-title">Keep Updating ❤️</div><div class="memory-sub">I liked every bit of it.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss29.jpg','Updates dete rahna ❤️')">Open</button></div><div class="context">Apna updates dete rahna... update lete rahna.. ❤️</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss31.jpg','I wait for your message 🌙')"><img src="ss31.jpg" alt="Waiting screenshot"></div><div class="memory-body"><div class="memory-title">Waiting 🌙</div><div class="memory-sub">Some waits feel worth it.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss31.jpg','I wait for your message 🌙')">Open</button></div><div class="context">I always wait for your message then sleeps</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss33.jpg','Still waiting 🌙')"><img src="ss33.jpg" alt="Waiting screenshot 2"></div><div class="memory-body"><div class="memory-title">Still Waiting 🌙</div><div class="memory-sub">And still smiling.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss33.jpg','Still waiting 🌙')">Open</button></div><div class="context">I always wait for your message then sleeps</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss36.jpg','Yup i am pure 😌')"><img src="ss36.jpg" alt="Pure screenshot"></div><div class="memory-body"><div class="memory-title">Pure 😌</div><div class="memory-sub">A tiny funny memory.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss36.jpg','Yup i am pure 😌')">Open</button></div><div class="context">Yup i'm pure</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss39.jpg','Lucky enough 💙')"><img src="ss39.jpg" alt="Lucky enough"></div><div class="memory-body"><div class="memory-title">Lucky Enough 💙</div><div class="memory-sub">That felt special too.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss39.jpg','Lucky enough 💙')">Open</button></div><div class="context">I guess i was enough lucky ki aap phele humko bataye</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss40.jpg','Good night after every game 🌙')"><img src="ss40.jpg" alt="Good night after game"></div><div class="memory-body"><div class="memory-title">After Every Game 🌙</div><div class="memory-sub">That part always mattered.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss40.jpg','Good night after every game 🌙')">Open</button></div><div class="context">Har game k baad good night messages aana ya soone se phele ... man i love it</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss41.jpg','Next recommendation? 🎬')"><img src="ss41.jpg" alt="Recommendation screenshot"></div><div class="memory-body"><div class="memory-title">Recommendations 🎬</div><div class="memory-sub">Always wanted the next one.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss41.jpg','Next recommendation? 🎬')">Open</button></div><div class="context">Aapka next recommendation series ya movie??</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss43.jpg','Already chose you 💖')"><img src="ss43.jpg" alt="Choose screenshot"></div><div class="memory-body"><div class="memory-title">Already Chose You 💖</div><div class="memory-sub">That one line stayed.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss43.jpg','Already chose you 💖')">Open</button></div><div class="context">Dekhe already aapko chooose kar chuke hai.. aur aapka secret bhi mera insta profile mein hai..</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss42.jpg','Bio secret 💜')"><img src="ss42.jpg" alt="Bio screenshot"></div><div class="memory-body"><div class="memory-title">Bio Secret 💜</div><div class="memory-sub">Some things were quietly yours.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss42.jpg','Bio secret 💜')">Open</button></div><div class="context">Aapko baki log kya bolenge iss liye apna bio mein nahi daale the</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('you.jpg','Gojo and purple heart 💜')"><img src="you.jpg" alt="You screenshot"></div><div class="memory-body"><div class="memory-title">Gojo + Purple Heart 💜</div><div class="memory-sub">That one was for you.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('you.jpg','Gojo and purple heart 💜')">Open</button></div><div class="context">but maine apna bio mein gojo aur purple heart daal diye the aapke liye</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss45.jpg','Doodles ✍️')"><img src="ss45.jpg" alt="Doodles"></div><div class="memory-body"><div class="memory-title">Doodles ✍️</div><div class="memory-sub">Simple and cute.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss45.jpg','Doodles ✍️')">Open</button></div><div class="context">Doodles</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss46.jpg','Promised already ❤️')"><img src="ss46.jpg" alt="Promised"></div><div class="memory-body"><div class="memory-title">Promised ❤️</div><div class="memory-sub">And I meant it.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss46.jpg','Promised already ❤️')">Open</button></div><div class="context">Promised already</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss47.jpg','Favorite song 🎵')"><img src="ss47.jpg" alt="Favorite song"></div><div class="memory-body"><div class="memory-title">Favorite Song 🎵</div><div class="memory-sub">And I remember it well.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss47.jpg','Favorite song 🎵')">Open</button></div><div class="context">Aapka fav song.. harleys in hawai</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss48.jpg','We will wait too ❤️')"><img src="ss48.jpg" alt="Waiting together"></div><div class="memory-body"><div class="memory-title">We’ll Wait Too ❤️</div><div class="memory-sub">That care felt real.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss48.jpg','We will wait too ❤️')">Open</button></div><div class="context">Aap itna late tak akele q jaagenge .. hum bhi wait karenge</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss49.jpg','I wont leave you ❤️')"><img src="ss49.jpg" alt="Won't leave you"></div><div class="memory-body"><div class="memory-title">Won’t Leave You ❤️</div><div class="memory-sub">That sentence stayed.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss49.jpg','I wont leave you ❤️')">Open</button></div><div class="context">I always wait and won't leave you</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss50.jpg','❤️')"><img src="ss50.jpg" alt="Heart memory"></div><div class="memory-body"><div class="memory-title">Just This ❤️</div><div class="memory-sub">Sometimes that is enough.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss50.jpg','❤️')">Open</button></div><div class="context">❤️</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss51.jpg','I will give my best ❤️')"><img src="ss51.jpg" alt="Best promise"></div><div class="memory-body"><div class="memory-title">My Best ❤️</div><div class="memory-sub">Maybe not perfect, but true.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss51.jpg','I will give my best ❤️')">Open</button></div><div class="context">Aapko kabhi regret nahi hone denge.. not a perfect man, but i will give my best...</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss52.jpg','Goa updates too ❤️')"><img src="ss52.jpg" alt="Goa updates"></div><div class="memory-body"><div class="memory-title">Goa Updates ❤️</div><div class="memory-sub">I wanted those too.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss52.jpg','Goa updates too ❤️')">Open</button></div><div class="context">aise hi updates dete rahiye... goa ka bhi❤️</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss54.jpg','❤️')"><img src="ss54.jpg" alt="Heart screenshot"></div><div class="memory-body"><div class="memory-title">A Tiny Heart ❤️</div><div class="memory-sub">Still means a lot.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss54.jpg','❤️')">Open</button></div><div class="context">❤️</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss56.jpg','Memory')"><img src="ss56.jpg" alt="Memory screenshot"></div><div class="memory-body"><div class="memory-title">Quiet Memory ✨</div><div class="memory-sub">Still belongs here.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss56.jpg','Memory')">Open</button></div><div class="context"></div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss57.jpg','We always ask ❤️')"><img src="ss57.jpg" alt="Care screenshot"></div><div class="memory-body"><div class="memory-title">Daily Care ❤️</div><div class="memory-sub">That was always real.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss57.jpg','We always ask ❤️')">Open</button></div><div class="context">hum toh roz update dete hai aur aapse puchte bhi hai.. kuch khaaye ki nahi.. ghar pahuche ki nahi.. aap thik ho ki nahi</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss58.jpg','Thats my name Anki 💙')"><img src="ss58.jpg" alt="Anki screenshot"></div><div class="memory-body"><div class="memory-title">Anki 💙</div><div class="memory-sub">Who is Ankit? 😌</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss58.jpg','Thats my name Anki 💙')">Open</button></div><div class="context">Yup thats my name Anki... who's Ankit i don't know</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss59.jpg','Came back early ❤️')"><img src="ss59.jpg" alt="Ticket screenshot"></div><div class="memory-body"><div class="memory-title">Came Back ❤️</div><div class="memory-sub">Because you called.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss59.jpg','Came back early ❤️')">Open</button></div><div class="context">Aapne bola aur hum wapis aagaye ghar ... ticket bhi karwa liye the jaldi ghar aane ka</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss60.jpg','Aapne jo bulaya ❤️')"><img src="ss60.jpg" alt="Came back screenshot"></div><div class="memory-body"><div class="memory-title">You Called ❤️</div><div class="memory-sub">So I came back.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss60.jpg','Aapne jo bulaya ❤️')">Open</button></div><div class="context">wapss toh aana hi tha aapne jo bulaya</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss61.jpg','Morning message ☀️')"><img src="ss61.jpg" alt="Morning message"></div><div class="memory-body"><div class="memory-title">Morning Message ☀️</div><div class="memory-sub">Best way to start the day.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss61.jpg','Morning message ☀️')">Open</button></div><div class="context">Kitna mast subha mein aapka message milta hai dekhne ko</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss62.jpg','Truth ✨')"><img src="ss62.jpg" alt="Truth screenshot"></div><div class="memory-body"><div class="memory-title">Truth ✨</div><div class="memory-sub">Simple and direct.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss62.jpg','Truth ✨')">Open</button></div><div class="context">Truth</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss73.jpg','Hope you are enjoying ❤️')"><img src="ss73.jpg" alt="Enjoy screenshot"></div><div class="memory-body"><div class="memory-title">Enjoying? ❤️</div><div class="memory-sub">I still hoped you were happy.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss73.jpg','Hope you are enjoying ❤️')">Open</button></div><div class="context">Hope aap pura enjoy kar rahe ho</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss74.jpg','Waiting for your updates ❤️')"><img src="ss74.jpg" alt="Waiting updates screenshot"></div><div class="memory-body"><div class="memory-title">Waiting for Updates ❤️</div><div class="memory-sub">Even while you were busy.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss74.jpg','Waiting for your updates ❤️')">Open</button></div><div class="context">I'm waiting for your updates and pics.. par sayad aap baki k saath ennoyment mein busy ho kafi</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss75.jpg','❤️')"><img src="ss75.jpg" alt="Heart memory 2"></div><div class="memory-body"><div class="memory-title">Another Heart ❤️</div><div class="memory-sub">Still enough to mean a lot.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss75.jpg','❤️')">Open</button></div><div class="context">❤️</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss64.jpg','I am still here ❤️')"><img src="ss64.jpg" alt="Still here screenshot"></div><div class="memory-body"><div class="memory-title">Still Here ❤️</div><div class="memory-sub">Even on hard days.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss64.jpg','I am still here ❤️')">Open</button></div><div class="context">i understand aapko mann nahi karta kisi se baat karne ka... but still i'm here ... aaj tak aapko akele nahi chore hai</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss65.jpg','Har din wait karna ❤️')"><img src="ss65.jpg" alt="Wait screenshot"></div><div class="memory-body"><div class="memory-title">Still Waiting ❤️</div><div class="memory-sub">And I still would.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss65.jpg','Har din wait karna ❤️')">Open</button></div><div class="context">Har din wait karna aur karunga bhi</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss66.jpg','Always care ❤️')"><img src="ss66.jpg" alt="Always care screenshot"></div><div class="memory-body"><div class="memory-title">Always Care ❤️</div><div class="memory-sub">Wins, struggles, everything.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss66.jpg','Always care ❤️')">Open</button></div><div class="context">And i'll always care,As always.. i told ya i'm always with u in your wins, struggles, and everythings</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss67.jpg','update you')"><img src="ss67.jpg" alt="Update you screenshot"></div><div class="memory-body"><div class="memory-title">Update You ✨</div><div class="memory-sub">Even that stayed.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss67.jpg','update you')">Open</button></div><div class="context">update you</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss69.jpg','❤️')"><img src="ss69.jpg" alt="Heart memory 3"></div><div class="memory-body"><div class="memory-title">Just Love ❤️</div><div class="memory-sub">No extra words needed.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss69.jpg','❤️')">Open</button></div><div class="context">❤️</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss70.jpg','Please update ❤️')"><img src="ss70.jpg" alt="Please update"></div><div class="memory-body"><div class="memory-title">Please Update ❤️</div><div class="memory-sub">That waiting was real.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss70.jpg','Please update ❤️')">Open</button></div><div class="context">Please aage ka bhi update kar dijiye... i know aap friends k saath hai but still thoda sa bhi time aap nikal sakte hai.. phone toh aapke pass hi hai usmein se kuch min hi sahi</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss72.jpg','Text toh dekh lijiye ❤️')"><img src="ss72.jpg" alt="Text screenshot"></div><div class="memory-body"><div class="memory-title">At Least a Text ❤️</div><div class="memory-sub">Even that would be enough.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss72.jpg','Text toh dekh lijiye ❤️')">Open</button></div><div class="context">Mein aapko call nahi kar sakta q ki i know aap friends k saath hai but text toh dekh lijiye...</div></div></div>
+
+        <div class="memory"><div class="thumb" onclick="openImage('ss72.jpg','Write your memory here...')"><img src="ss72.jpg" alt="Extra memory"></div><div class="memory-body"><div class="memory-title">One More Memory ✨</div><div class="memory-sub">A space you can still fill.</div><div class="actions"><button class="btn secondary" onclick="toggleContext(this)">💌 Read Context</button><button class="btn primary" onclick="openImage('ss72.jpg','Write your memory here...')">Open</button></div><div class="context">Write your memory here...</div></div></div>
     </div>
 
-</div>
+    <div class="footer-card">
+        <h2>This One Was Hard ❤️</h2>
+        <p>
+            Well ye sabse hard tha banane mein... jitna ss liye aur old message padhe, har baar rooye hai... chest bhari ho jaata hai aur padhte padhte roote the ❤️
+        </p>
 
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="updates.jpg">
-
+        <div class="footer-actions">
+            <a href="cards.html" class="btn primary">One Last Surprise ✨</a>
         </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Jab aap care karte hai... mera toh dil bhar jaata hai
-        </div>
-
     </div>
-
 </div>
-    <!-- Screenshot 3 -->
 
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss2.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            water duck
-        </div>
-
+<div class="lightbox" id="viewer" onclick="closeImage(event)">
+    <div class="lightbox-inner">
+        <button class="close" aria-label="Close">×</button>
+        <img id="fullimg" alt="Expanded memory">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
     </div>
-
-</div>
-
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="anks.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            i love this name.. Anks, Anki, Ankiss, Huh Ankit kon
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss5.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Aapke saath new mode explore karne k liye wait karna
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="call1.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            wo late nights call... jab bhi humlog game mein nahi khel paate the toh call mein baat karke soona
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="call2.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Aap toh pinned bhi ho mere chat mein... Priority matters❤️
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss9.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Jab aapka dominator hogaya tha aur mera nahi ho paaya tha tab aap sad the tab hum bhi hue the but still i'll chear up for you ❤️
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss8.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            These emotions 
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss7.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Aapko Dominator tak jaana tha ... Your wish my command
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss10.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Mera best memories.. 
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss11.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Dominator firse kare kya?
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss12.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Aapka raat ko game ka text ka wait karna .. mera fav notification
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss13.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            aapka good nightzz text aana roz (miss them)
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss14.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            daily audio call pe baat karna
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss15.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Bole the na aap Hinata ho.. Hi Hinata can i be your Naruto
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss16.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            But aap mera toh kabka jeet chuke ho❤️
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss17.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Jab aap ye post kiye the.. i feel lucky
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss18.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            I told ya always here for you
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss20.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            i love it jab bhi aap updates dete the
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss21.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Jisne aaj tak kisi k liye gaana nahi gaya.. wo pheli baar aapke liye gaaya 
-        </div>
-
-    </div>
-
-</div>
-
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss26.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Hukum kijiye... i'll try my best, always 
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="gau.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Aap jab bhi batate hai ki aap kiske saath khel rahe ya koi bula diya tha.. i just love it 
-        </div>
-
-    </div>
-
-</div>
-
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss29.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Apna updates dete rahna... update lete rahna.. ❤️
-        </div>
-
-    </div>
-
-</div>
-
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss31.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            I always wait for your message then sleeps
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss33.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            I always wait for your message then sleeps
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss36.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Yup i'm pure
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss39.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            I guess i was enough lucky ki aap phele humko bataye
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss40.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Har game k baad good night messages aana ya soone se phele ... man i love it
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss41.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Aapka next recommendation series ya movie??
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss43.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Dekhe already aapko chooose kar chuke hai.. aur aapka secret bhi mera insta profile mein hai..
-        
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss42.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-           Aapko baki log kya bolenge iss liye apna bio mein nahi daale the 
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="you.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            but maine apna bio mein gojo aur purple heart daal diye the aapke liye
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss45.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Doodles
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss46.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Promised already 
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss47.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Aapka fav song.. harleys in hawai
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss48.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Aap itna late tak akele q jaagenge .. hum bhi wait karenge
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss49.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            I always wait and won't leave you
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss50.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            ❤️
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss51.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Aapko kabhi regret nahi hone denge.. not a perfect man, but i will give my best...
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss52.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            aise hi updates dete rahiye... goa ka bhi❤️
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss54.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            ❤️
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss56.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss57.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            hum toh roz update dete hai aur aapse puchte bhi hai.. kuch khaaye ki nahi.. ghar pahuche ki nahi.. aap thik ho ki nahi
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss58.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Yup thats my name Anki... who's Ankit i don't know
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss59.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Aapne bola aur hum wapis aagaye ghar ... ticket bhi karwa liye the jaldi ghar aane ka 
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss60.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            wapss toh aana hi tha aapne jo bulaya
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss61.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Kitna mast subha mein aapka message milta hai dekhne ko
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss62.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-           Truth 
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss73.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-           Hope aap pura enjoy kar rahe ho 
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss74.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-           I'm waiting for your updates and pics.. par sayad aap baki k saath ennoyment mein busy ho kafi
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss75.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            ❤️ 
-        </div>
-
-    </div>
-
-</div>
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss64.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-           i understand aapko mann nahi karta kisi se baat karne ka... but still i'm here ... aaj tak aapko akele nahi chore hai 
-        </div>
-
-    </div>
-
-</div>
-
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss65.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Har din wait karna aur karunga bhi
-        </div>
-
-    </div>
-
-</div>
-
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss66.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            And i'll always care,As always.. i told ya i'm always with u in your wins, struggles, and everythings
-        </div>
-
-    </div>
-
-</div>
-
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss67.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            update you
-        </div>
-
-    </div>
-
-</div>
-
-
-
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss69.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            ❤️
-        </div>
-
-    </div>
-
-</div>
-
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss70.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Please aage ka bhi update kar dijiye... i know aap friends k saath hai but still thoda sa bhi time aap nikal sakte hai.. phone toh aapke pass hi hai usmein se kuch min hi sahi
-        </div>
-
-    </div>
-
-</div>
-
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss72.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-           Mein aapko call nahi kar sakta q ki i know aap friends k saath hai but text toh dekh lijiye...
-        </div>
-
-    </div>
-
-</div>
-
-    <!-- Screenshot 3 -->
-
-    <div class="memory">
-
-        <div class="screenshot"
-             onclick="openImage('chat3.jpg')">
-
-            <img src="ss72.jpg">
-
-        </div>
-
-        <button class="show-btn"
-                onclick="toggleContext(this)">
-            💌 Read Context
-        </button>
-
-        <div class="context">
-            Write your memory here...
-        </div>
-
-    </div>
-
-</div>
-
-
-<div class="footer">
-
-    <p>
-        Well ye sabse hard tha banane mein...
-        jitna ss liye aur old message padhe,
-        har baar rooye hai...
-        chest bhari ho jaata hai aur
-        padhte padhte roote the ❤️
-    </p>
-
-    <br><br>
-
-    <a href="cards.html" class="next-btn">
-        One Last Surprise ✨
-    </a>
-
-</div>
-
-<div class="fullscreen" id="viewer">
-
-    <span class="close"
-          onclick="closeImage()">
-          ×
-    </span>
-
-    <img id="fullimg">
-
 </div>
 
 <script>
+const bgEmojis = ["💙","✨","📸","🌙","💫","🫶"];
+const root = document.documentElement;
+const cursorLight = document.getElementById("cursorLight");
+const viewer = document.getElementById("viewer");
+const fullimg = document.getElementById("fullimg");
+const lightboxCaption = document.getElementById("lightboxCaption");
+const memories = document.querySelectorAll(".memory");
+const sky = document.getElementById("sky");
 
-function toggleContext(btn){
-
-    const context = btn.nextElementSibling;
-
-    if(context.style.display==="block"){
-
-        context.style.display="none";
-        btn.innerHTML="💌 Read Context";
-
-    }else{
-
-        context.style.display="block";
-        btn.innerHTML="❤️ Hide Context";
-
-    }
-
+for(let i=0;i<20;i++){
+    const star = document.createElement("div");
+    star.className = "floaty";
+    star.textContent = Math.random() > 0.5 ? "✦" : "⋆";
+    star.style.left = Math.random()*100 + "vw";
+    star.style.bottom = (-20 - Math.random()*140) + "px";
+    star.style.fontSize = (10 + Math.random()*16) + "px";
+    star.style.animationDuration = (10 + Math.random()*15) + "s";
+    star.style.animationDelay = (-Math.random()*20) + "s";
+    sky.appendChild(star);
 }
 
-function openImage(src){
-
-    document.getElementById("viewer").style.display="flex";
-    document.getElementById("fullimg").src=src;
-
+for(let i=0;i<7;i++){
+    const heart = document.createElement("div");
+    heart.className = "bg-heart";
+    heart.textContent = Math.random() > 0.5 ? "❤" : "♡";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.bottom = (-20 - Math.random()*160) + "px";
+    heart.style.fontSize = (10 + Math.random()*12) + "px";
+    heart.style.animationDuration = (15 + Math.random()*16) + "s";
+    heart.style.animationDelay = (-Math.random()*18) + "s";
+    sky.appendChild(heart);
 }
 
-function closeImage(){
-
-    document.getElementById("viewer").style.display="none";
-
+for(let i=0;i<8;i++){
+    const emoji = document.createElement("div");
+    emoji.className = "bg-emoji";
+    emoji.textContent = bgEmojis[Math.floor(Math.random()*bgEmojis.length)];
+    emoji.style.left = Math.random()*100 + "vw";
+    emoji.style.bottom = (-20 - Math.random()*180) + "px";
+    emoji.style.fontSize = (14 + Math.random()*14) + "px";
+    emoji.style.animationDuration = (16 + Math.random()*18) + "s";
+    emoji.style.animationDelay = (-Math.random()*20) + "s";
+    sky.appendChild(emoji);
 }
 
-for(let i=0;i<30;i++){
+function updatePointer(x,y){
+    root.style.setProperty("--x", x + "px");
+    root.style.setProperty("--y", y + "px");
+    cursorLight.style.left = x + "px";
+    cursorLight.style.top = y + "px";
+}
 
-    let heart=document.createElement("div");
+function createSpark(x,y){
+    const spark = document.createElement("div");
+    spark.className = "spark";
+    spark.style.left = x + "px";
+    spark.style.top = y + "px";
+    document.body.appendChild(spark);
+    setTimeout(()=>spark.remove(),900);
+}
 
-    heart.className="heart";
-    heart.innerHTML="❤️ 😍";
-
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.fontSize=(12+Math.random()*25)+"px";
-    heart.style.animationDuration=(6+Math.random()*10)+"s";
-
+function createHeart(x,y){
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.textContent = ["💙","✨","💖","📸","💫"][Math.floor(Math.random()*5)];
+    heart.style.left = x + "px";
+    heart.style.top = y + "px";
     document.body.appendChild(heart);
-
+    setTimeout(()=>heart.remove(),1450);
 }
 
+function toggleContext(button){
+    const memory = button.closest(".memory");
+    memory.classList.toggle("open");
+    const rect = button.getBoundingClientRect();
+    createHeart(rect.left + rect.width/2, rect.top + rect.height/2);
+}
+
+function openImage(src, caption){
+    viewer.classList.add("open");
+    fullimg.src = src;
+    lightboxCaption.textContent = caption || "";
+    document.body.style.overflow = "hidden";
+}
+
+function closeImage(e){
+    if(e.target === viewer || e.target.classList.contains("close")){
+        viewer.classList.remove("open");
+        document.body.style.overflow = "";
+    }
+}
+
+memories.forEach(memory=>{
+    memory.addEventListener("mousemove",(e)=>{
+        const rect = memory.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const ry = ((x / rect.width) - 0.5) * 8;
+        const rx = ((y / rect.height) - 0.5) * -8;
+        memory.style.transform = `perspective(950px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;
+    });
+
+    memory.addEventListener("mouseleave",()=>{
+        memory.style.transform = "";
+    });
+
+    memory.addEventListener("touchstart",(e)=>{
+        const t = e.touches[0];
+        const rect = memory.getBoundingClientRect();
+        const x = t.clientX - rect.left;
+        const y = t.clientY - rect.top;
+        const ry = ((x / rect.width) - 0.5) * 6;
+        const rx = ((y / rect.height) - 0.5) * -6;
+        memory.style.transform = `perspective(950px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+    },{passive:true});
+
+    memory.addEventListener("touchend",()=>{
+        memory.style.transform = "";
+    });
+});
+
+window.addEventListener("mousemove",(e)=>{
+    updatePointer(e.clientX,e.clientY);
+    if(Math.random() > 0.988) createSpark(e.clientX,e.clientY);
+});
+
+window.addEventListener("touchstart",(e)=>{
+    const t = e.touches[0];
+    updatePointer(t.clientX,t.clientY);
+},{passive:true});
+
+window.addEventListener("touchmove",(e)=>{
+    const t = e.touches[0];
+    updatePointer(t.clientX,t.clientY);
+},{passive:true});
+
+document.addEventListener("keydown",(e)=>{
+    if(e.key === "Escape"){
+        viewer.classList.remove("open");
+        document.body.style.overflow = "";
+    }
+});
+
+window.toggleContext = toggleContext;
+window.openImage = openImage;
 </script>
 
 </body>
 </html>
+]]>
