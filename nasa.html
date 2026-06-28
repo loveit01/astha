@@ -1,162 +1,880 @@
+<![CDATA[
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Earth's Hidden Art</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
-
-body{
-    background:linear-gradient(135deg,#0b1020,#151d35);
-    color:white;
-    min-height:100vh;
-    overflow-x:hidden;
-}
-
-.container{
-    width:90%;
-    max-width:1200px;
-    margin:auto;
-    padding:60px 0;
-    text-align:center;
-}
-
-h1{
-    font-size:3rem;
-    margin-bottom:15px;
-    animation:fadeUp 1s ease;
-}
-
-.subtitle{
-    max-width:700px;
-    margin:auto;
-    color:#cfcfcf;
-    line-height:1.8;
-    animation:fadeUp 1.3s ease;
-}
-
-.gallery{
-    margin-top:50px;
-    animation:fadeUp 1.6s ease;
-}
-
-.gallery img{
-    width:100%;
-    border-radius:20px;
-    box-shadow:0 10px 40px rgba(0,0,0,.5);
-}
-
-.info{
-    max-width:800px;
-    margin:50px auto;
-    line-height:2;
-    color:#e8e8e8;
-    animation:fadeUp 2s ease;
-}
-
-.highlight{
-    color:#ffd166;
-}
-
-.credit{
-    margin-top:25px;
-    color:#9ea7c0;
-    font-size:.9rem;
-}
-
-.next-btn{
-    display:inline-block;
-    margin-top:40px;
-    padding:15px 35px;
-    background:#ff6b81;
-    color:white;
-    text-decoration:none;
-    border-radius:50px;
-    font-weight:600;
-    transition:.3s;
-    box-shadow:0 5px 20px rgba(255,107,129,.4);
-}
-
-.next-btn:hover{
-    transform:translateY(-5px);
-    box-shadow:0 10px 30px rgba(255,107,129,.6);
-}
-
-@keyframes fadeUp{
-    from{
-        opacity:0;
-        transform:translateY(30px);
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Earth's Hidden Art</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
     }
-    to{
-        opacity:1;
-        transform:translateY(0);
+
+    :root{
+      --x:50%;
+      --y:50%;
+      --bg1:#050914;
+      --bg2:#0e1a3a;
+      --bg3:#1a1036;
+      --blue:#6dbdff;
+      --cyan:#97f3ff;
+      --violet:#b399ff;
+      --pink:#ff88cb;
+      --gold:#ffd166;
+      --text:#f6fbff;
+      --muted:rgba(255,255,255,.76);
     }
-}
-</style>
+
+    html,body{
+      width:100%;
+      min-height:100%;
+    }
+
+    body{
+      min-height:100svh;
+      overflow-x:hidden;
+      background:
+        radial-gradient(circle at var(--x) var(--y), rgba(151,243,255,.12), transparent 14%),
+        radial-gradient(circle at 16% 10%, rgba(109,189,255,.16), transparent 24%),
+        radial-gradient(circle at 84% 16%, rgba(179,153,255,.16), transparent 22%),
+        radial-gradient(circle at 50% 92%, rgba(255,136,203,.08), transparent 24%),
+        linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
+      color:var(--text);
+      position:relative;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:radial-gradient(circle at center, rgba(255,255,255,.04), transparent 60%);
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .sky{
+      position:fixed;
+      inset:0;
+      overflow:hidden;
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .floaty,.bg-heart,.bg-emoji{
+      position:absolute;
+      animation:floatUp linear infinite;
+      pointer-events:none;
+    }
+
+    .floaty{ color:rgba(255,255,255,.22); }
+    .bg-heart{
+      color:rgba(255,136,203,.16);
+      text-shadow:0 0 12px rgba(255,136,203,.12);
+    }
+    .bg-emoji{
+      opacity:.14;
+      filter:drop-shadow(0 0 10px rgba(255,255,255,.06));
+    }
+
+    .orb{
+      position:absolute;
+      width:34vmax;
+      height:34vmax;
+      border-radius:50%;
+      filter:blur(50px);
+      opacity:.2;
+      animation:drift 16s ease-in-out infinite;
+    }
+
+    .orb.one{background:#53abff; left:-10%; top:4%;}
+    .orb.two{background:#ae93ff; right:-10%; top:14%; animation-delay:-5s;}
+    .orb.three{background:#ff88cb; left:28%; bottom:-16%; animation-delay:-9s;}
+
+    .cursor-light{
+      position:fixed;
+      width:220px;
+      height:220px;
+      left:0;
+      top:0;
+      border-radius:50%;
+      transform:translate(-50%,-50%);
+      pointer-events:none;
+      background:radial-gradient(circle, rgba(255,255,255,.18), rgba(109,189,255,.10) 32%, rgba(255,255,255,0) 70%);
+      mix-blend-mode:screen;
+      z-index:1;
+    }
+
+    .container{
+      position:relative;
+      z-index:2;
+      width:min(980px,100%);
+      margin:auto;
+      padding:42px 16px 56px;
+    }
+
+    .hero{
+      text-align:center;
+      margin-bottom:26px;
+      animation:fadeUp .9s ease;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      margin-bottom:14px;
+      padding:8px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.08);
+      color:rgba(255,255,255,.78);
+      font-size:.8rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    h1{
+      font-size:clamp(2.2rem,8vw,4.6rem);
+      line-height:1.06;
+      margin-bottom:14px;
+      text-shadow:0 0 24px rgba(109,189,255,.18);
+    }
+
+    .subtitle{
+      max-width:760px;
+      margin:auto;
+      color:var(--muted);
+      line-height:1.8;
+      font-size:clamp(.98rem,2.8vw,1.08rem);
+    }
+
+    .main-card{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.09);
+      border-radius:30px;
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+      box-shadow:0 20px 50px rgba(0,0,0,.28);
+      overflow:hidden;
+      position:relative;
+      padding:18px;
+    }
+
+    .main-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at var(--x) var(--y), rgba(255,255,255,.12), transparent 14%),
+        linear-gradient(135deg, rgba(109,189,255,.08), rgba(179,153,255,.06), rgba(255,136,203,.05));
+      pointer-events:none;
+    }
+
+    .image-shell{
+      position:relative;
+      z-index:2;
+      padding:18px;
+      border-radius:28px;
+      background:rgba(4,9,20,.55);
+      border:1px solid rgba(255,255,255,.07);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+    }
+
+    .image-shell::before{
+      content:"";
+      position:absolute;
+      inset:auto;
+      width:70%;
+      height:40%;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      background:radial-gradient(circle, rgba(109,189,255,.22), rgba(179,153,255,.12), transparent 70%);
+      filter:blur(20px);
+      pointer-events:none;
+    }
+
+    .image-stage{
+      position:relative;
+      z-index:2;
+      width:100%;
+      min-height:260px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px;
+      border-radius:22px;
+      overflow:hidden;
+      cursor:pointer;
+      transition:transform .25s ease, box-shadow .25s ease;
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,.05), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      box-shadow:0 16px 36px rgba(0,0,0,.25);
+      transform-style:preserve-3d;
+    }
+
+    .image-stage::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at var(--x) var(--y), rgba(255,255,255,.14), transparent 16%);
+      pointer-events:none;
+    }
+
+    .image-stage img{
+      width:100%;
+      height:auto;
+      max-height:70vh;
+      object-fit:contain;
+      display:block;
+      border-radius:16px;
+      transition:transform .4s ease;
+    }
+
+    .image-stage:hover img{
+      transform:scale(1.02);
+    }
+
+    .meta-row{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:16px;
+      position:relative;
+      z-index:2;
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.08);
+      color:rgba(255,255,255,.78);
+      font-size:.9rem;
+    }
+
+    .text-area{
+      position:relative;
+      z-index:2;
+      max-width:760px;
+      margin:26px auto 0;
+      text-align:center;
+    }
+
+    .text-area h2{
+      font-size:clamp(1.3rem,4vw,2rem);
+      margin-bottom:14px;
+    }
+
+    .text-area p{
+      color:rgba(255,255,255,.84);
+      line-height:1.9;
+      margin-bottom:14px;
+      font-size:1rem;
+    }
+
+    .highlight{
+      color:var(--gold);
+      text-shadow:0 0 10px rgba(255,209,102,.12);
+    }
+
+    .reveal-box{
+      margin-top:16px;
+      padding:18px 16px;
+      border-radius:22px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .reveal-box::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at var(--x) var(--y), rgba(255,255,255,.10), transparent 16%);
+      pointer-events:none;
+    }
+
+    .reveal-title{
+      font-size:.82rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.62);
+      margin-bottom:10px;
+    }
+
+    .reveal-text{
+      min-height:86px;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      line-height:1.8;
+      font-size:1rem;
+      text-align:center;
+    }
+
+    .line{
+      opacity:0;
+      transform:translateY(12px);
+      transition:opacity .55s ease, transform .55s ease;
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .line.show{
+      opacity:1;
+      transform:translateY(0);
+      position:relative;
+    }
+
+    .dots{
+      display:flex;
+      gap:8px;
+      margin-top:14px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    .dot{
+      width:9px;
+      height:9px;
+      border-radius:50%;
+      background:rgba(255,255,255,.18);
+      transition:.3s ease;
+    }
+
+    .dot.active{
+      width:24px;
+      border-radius:999px;
+      background:linear-gradient(90deg, var(--cyan), var(--blue), var(--violet));
+      box-shadow:0 0 12px rgba(109,189,255,.24);
+    }
+
+    .credit{
+      margin-top:18px;
+      color:#9ea7c0;
+      font-size:.92rem;
+    }
+
+    .actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-top:24px;
+      position:relative;
+      z-index:2;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 22px;
+      border:none;
+      border-radius:999px;
+      font-weight:600;
+      color:white;
+      text-decoration:none;
+      cursor:pointer;
+      transition:.25s ease;
+      min-width:170px;
+    }
+
+    .btn.primary{
+      background:linear-gradient(90deg,var(--blue),var(--violet));
+      box-shadow:0 12px 28px rgba(109,189,255,.24);
+    }
+
+    .btn.secondary{
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.10);
+    }
+
+    .btn:hover{
+      transform:translateY(-3px) scale(1.02);
+    }
+
+    .lightbox{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.92);
+      display:none;
+      justify-content:center;
+      align-items:center;
+      z-index:9999;
+      padding:14px;
+    }
+
+    .lightbox.open{
+      display:flex;
+    }
+
+    .lightbox-inner{
+      max-width:1000px;
+      width:100%;
+      position:relative;
+      text-align:center;
+    }
+
+    .lightbox img{
+      max-width:100%;
+      max-height:84vh;
+      object-fit:contain;
+      border-radius:18px;
+      box-shadow:0 18px 50px rgba(0,0,0,.45);
+      background:#0b1020;
+    }
+
+    .close{
+      position:absolute;
+      top:-6px;
+      right:0;
+      width:42px;
+      height:42px;
+      border:none;
+      border-radius:50%;
+      background:rgba(255,255,255,.12);
+      color:white;
+      font-size:24px;
+      cursor:pointer;
+    }
+
+    .lightbox-caption{
+      margin-top:12px;
+      color:rgba(255,255,255,.75);
+      line-height:1.7;
+      font-size:.95rem;
+    }
+
+    .spark,.heart{
+      position:fixed;
+      pointer-events:none;
+      z-index:10000;
+      transform:translate(-50%,-50%);
+    }
+
+    .spark{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(255,255,255,1), rgba(255,255,255,0));
+      animation:spark .9s ease forwards;
+    }
+
+    .heart{
+      font-size:18px;
+      animation:heartRise 1.5s ease forwards;
+      filter:drop-shadow(0 0 10px rgba(255,136,203,.32));
+    }
+
+    @keyframes floatUp{
+      from{transform:translateY(0) rotate(0deg);}
+      to{transform:translateY(-120vh) rotate(180deg);}
+    }
+
+    @keyframes drift{
+      0%,100%{transform:translate(0,0) scale(1);}
+      50%{transform:translate(24px,-22px) scale(1.08);}
+    }
+
+    @keyframes fadeUp{
+      from{opacity:0; transform:translateY(24px);}
+      to{opacity:1; transform:translateY(0);}
+    }
+
+    @keyframes spark{
+      0%{opacity:1; transform:translate(-50%,-50%) scale(.5);}
+      100%{opacity:0; transform:translate(-50%,-50%) scale(3.5);}
+    }
+
+    @keyframes heartRise{
+      0%{opacity:0; transform:translate(-50%,-50%) scale(.7);}
+      15%{opacity:1;}
+      100%{opacity:0; transform:translate(-50%,-150px) scale(1.4);}
+    }
+
+    @media (max-width:768px){
+      .container{
+        padding:28px 12px 42px;
+      }
+
+      .main-card{
+        border-radius:24px;
+        padding:12px;
+      }
+
+      .image-shell{
+        padding:12px;
+        border-radius:22px;
+      }
+
+      .image-stage{
+        min-height:220px;
+        border-radius:18px;
+      }
+
+      .image-stage img{
+        max-height:56vh;
+      }
+    }
+
+    @media (max-width:520px){
+      .cursor-light{
+        width:145px;
+        height:145px;
+      }
+
+      .container{
+        padding:22px 10px 36px;
+      }
+
+      .eyebrow{
+        font-size:.72rem;
+      }
+
+      h1{
+        font-size:clamp(2rem,10vw,2.8rem);
+      }
+
+      .subtitle{
+        font-size:.95rem;
+        line-height:1.7;
+      }
+
+      .main-card{
+        border-radius:20px;
+        padding:10px;
+      }
+
+      .image-shell{
+        padding:10px;
+        border-radius:18px;
+      }
+
+      .image-stage{
+        min-height:180px;
+        padding:8px;
+      }
+
+      .image-stage img{
+        max-height:48vh;
+        border-radius:14px;
+      }
+
+      .tag{
+        width:100%;
+        justify-content:center;
+        font-size:.86rem;
+      }
+
+      .text-area h2{
+        font-size:1.25rem;
+      }
+
+      .text-area p,
+      .reveal-text{
+        font-size:.95rem;
+      }
+
+      .reveal-text{
+        min-height:110px;
+      }
+
+      .actions{
+        flex-direction:column;
+      }
+
+      .btn{
+        width:100%;
+        min-width:0;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="sky" id="sky">
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="orb three"></div>
+  </div>
 
-<div class="container">
+  <div class="cursor-light" id="cursorLight"></div>
 
-    <h1>🌍 Earth's Hidden Art</h1>
-
-    <p class="subtitle">
-        These aren't paintings, illustrations, or AI-generated images.
-        They are real satellite photographs captured from space by NASA's
-        Landsat missions.
-    </p>
-
-    <div class="gallery">
-        <img src="ASTHA.png" alt="NASA Landsat Art">
+  <div class="container">
+    <div class="hero">
+      <div class="eyebrow">🌌 A little universe for you 💙</div>
+      <h1>Earth's Hidden Art ✨</h1>
+      <p class="subtitle">
+        These patterns are real — captured from space, quietly beautiful, and impossible to fully notice from the ground. Maybe that's why this reminded me of you.
+      </p>
     </div>
 
-    <div class="info">
-
-        <p>
-            From winding rivers and desert dunes to mountain ridges and
-            agricultural patterns, Earth creates artwork on a scale too large
-            for us to see from the ground.
-        </p>
-
-        <br>
-
-        <p>
-            Sometimes beauty appears only when viewed from a different
-            perspective.
-        </p>
-
-        <br>
-
-        <p class="highlight">
-            Just like these landscapes reveal hidden patterns from space,
-            some people bring unexpected beauty into our lives.
-        </p>
-
-        <p style="margin-top:20px;">
-            And this little surprise reminded me of you ✨
-        </p>
-
-        <div class="credit">
-            Imagery Source: NASA / USGS Landsat Program
+    <div class="main-card">
+      <div class="image-shell">
+        <div class="image-stage" id="imageStage" onclick="openImage()">
+          <img src="https://nielsen-prod-be.glean.com/api/v1/downloadchatfile/3ec840d7e72a424489f632be227780e9" alt="NASA-inspired surprise image for Astha">
         </div>
 
+        <div class="meta-row">
+          <div class="tag">🌍 Real satellite beauty</div>
+          <div class="tag">💙 Full image visible</div>
+          <div class="tag">✨ Tap image to expand</div>
+        </div>
+      </div>
+
+      <div class="text-area">
+        <h2>Sometimes beauty appears only when viewed from a different perspective. 🌠</h2>
+
+        <p>
+          From far away, Earth looks quiet. But when you look closer, it holds rivers, curves, colors, textures, and patterns that feel almost unreal.
+        </p>
+
+        <p>
+          That is what made this page feel special to me.
+        </p>
+
+        <p class="highlight">
+          Some beauty does not arrive loudly. It slowly stays in your mind until one day you realize it means more than you expected. 💫
+        </p>
+
+        <p>
+          That is what your name feels like to me.
+        </p>
+
+        <p>
+          Astha is not just a name I read or hear. It has slowly become a feeling — a calm thought, a soft memory, a familiar happiness, and something my heart notices very easily now.
+        </p>
+
+        <p>
+          Maybe that's why this page felt right. Just like Earth hides art in places people don't always notice, some people quietly become important in ways that are hard to explain at first.
+        </p>
+
+        <div class="reveal-box">
+          <div class="reveal-title">Tap to reveal 💌</div>
+          <div class="reveal-text" id="revealText">
+            <div class="line show">And somehow, your name became one of those beautiful things for me. 💙</div>
+          </div>
+          <div class="dots" id="dots"></div>
+        </div>
+
+        <div class="credit">🛰️ Inspired by NASA / USGS Landsat imagery</div>
+
+        <div class="actions">
+          <button class="btn secondary" id="nextLineBtn">Next Thought ✨</button>
+          <a href="cards.html" class="btn primary" id="nextBtn">Next Surprise 💖</a>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <a href="cards.html" class="next-btn">
-        Next Surprise ➜
-    </a>
+  <div class="lightbox" id="lightbox" onclick="closeImage(event)">
+    <div class="lightbox-inner">
+      <button class="close" aria-label="Close">×</button>
+      <img src="https://nielsen-prod-be.glean.com/api/v1/downloadchatfile/3ec840d7e72a424489f632be227780e9" alt="NASA-inspired surprise image for Astha expanded">
+      <div class="lightbox-caption">🌍 A wider look at the image that reminded me of you.</div>
+    </div>
+  </div>
 
-</div>
+  <script>
+    const thoughts = [
+      "And somehow, your name became one of those beautiful things for me. 💙",
+      "Your name stayed with me longer than I expected. ✨",
+      "Astha feels less like a word now, and more like a feeling. 🌌",
+      "Some names are remembered. Yours is felt. 💫",
+      "Maybe that is why beautiful things keep reminding me of you. 💖"
+    ];
 
+    const bgEmojis = ["🌍","✨","💙","🪐","🌌","💫"];
+
+    const root = document.documentElement;
+    const cursorLight = document.getElementById("cursorLight");
+    const imageStage = document.getElementById("imageStage");
+    const lightbox = document.getElementById("lightbox");
+    const revealText = document.getElementById("revealText");
+    const nextLineBtn = document.getElementById("nextLineBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const dots = document.getElementById("dots");
+    const sky = document.getElementById("sky");
+
+    let currentThought = 0;
+    let animating = false;
+
+    for(let i=0;i<thoughts.length;i++){
+      const dot = document.createElement("div");
+      dot.className = "dot" + (i===0 ? " active" : "");
+      dots.appendChild(dot);
+    }
+
+    for(let i=0;i<20;i++){
+      const star = document.createElement("div");
+      star.className = "floaty";
+      star.textContent = Math.random() > 0.5 ? "✦" : "⋆";
+      star.style.left = Math.random()*100 + "vw";
+      star.style.bottom = (-20 - Math.random()*140) + "px";
+      star.style.fontSize = (10 + Math.random()*16) + "px";
+      star.style.animationDuration = (10 + Math.random()*15) + "s";
+      star.style.animationDelay = (-Math.random()*20) + "s";
+      sky.appendChild(star);
+    }
+
+    for(let i=0;i<7;i++){
+      const heart = document.createElement("div");
+      heart.className = "bg-heart";
+      heart.textContent = Math.random() > 0.5 ? "❤" : "♡";
+      heart.style.left = Math.random()*100 + "vw";
+      heart.style.bottom = (-20 - Math.random()*160) + "px";
+      heart.style.fontSize = (10 + Math.random()*12) + "px";
+      heart.style.animationDuration = (15 + Math.random()*16) + "s";
+      heart.style.animationDelay = (-Math.random()*18) + "s";
+      sky.appendChild(heart);
+    }
+
+    for(let i=0;i<8;i++){
+      const emoji = document.createElement("div");
+      emoji.className = "bg-emoji";
+      emoji.textContent = bgEmojis[Math.floor(Math.random()*bgEmojis.length)];
+      emoji.style.left = Math.random()*100 + "vw";
+      emoji.style.bottom = (-20 - Math.random()*180) + "px";
+      emoji.style.fontSize = (14 + Math.random()*14) + "px";
+      emoji.style.animationDuration = (16 + Math.random()*18) + "s";
+      emoji.style.animationDelay = (-Math.random()*20) + "s";
+      sky.appendChild(emoji);
+    }
+
+    function updatePointer(x,y){
+      root.style.setProperty("--x", x + "px");
+      root.style.setProperty("--y", y + "px");
+      cursorLight.style.left = x + "px";
+      cursorLight.style.top = y + "px";
+    }
+
+    function tiltImage(clientX, clientY){
+      const rect = imageStage.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
+      const ry = ((x / rect.width) - 0.5) * 8;
+      const rx = ((y / rect.height) - 0.5) * -8;
+      imageStage.style.transform = `perspective(950px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-3px)`;
+    }
+
+    function resetTilt(){
+      imageStage.style.transform = "";
+    }
+
+    function openImage(){
+      lightbox.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeImage(e){
+      if(e.target === lightbox || e.target.classList.contains("close")){
+        lightbox.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+    }
+
+    function createSpark(x,y){
+      const spark = document.createElement("div");
+      spark.className = "spark";
+      spark.style.left = x + "px";
+      spark.style.top = y + "px";
+      document.body.appendChild(spark);
+      setTimeout(()=>spark.remove(),900);
+    }
+
+    function createHeart(x,y){
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.textContent = ["💙","✨","💖","🌌","🪐"][Math.floor(Math.random()*5)];
+      heart.style.left = x + "px";
+      heart.style.top = y + "px";
+      document.body.appendChild(heart);
+      setTimeout(()=>heart.remove(),1500);
+    }
+
+    function renderThought(index){
+      if(animating) return;
+      animating = true;
+
+      const current = revealText.querySelector(".line");
+      current.classList.remove("show");
+
+      setTimeout(() => {
+        revealText.innerHTML = "";
+        const line = document.createElement("div");
+        line.className = "line show";
+        line.textContent = thoughts[index];
+        revealText.appendChild(line);
+
+        document.querySelectorAll(".dot").forEach((dot, i) => {
+          dot.classList.toggle("active", i === index);
+        });
+
+        animating = false;
+      }, 220);
+    }
+
+    function nextThought(x = window.innerWidth/2, y = window.innerHeight/2){
+      createSpark(x,y);
+      createHeart(x,y);
+
+      if(currentThought < thoughts.length - 1){
+        currentThought++;
+      } else {
+        currentThought = 0;
+      }
+      renderThought(currentThought);
+    }
+
+    window.addEventListener("mousemove",(e)=>{
+      updatePointer(e.clientX,e.clientY);
+      tiltImage(e.clientX,e.clientY);
+      if(Math.random() > 0.988) createSpark(e.clientX,e.clientY);
+    });
+
+    window.addEventListener("touchstart",(e)=>{
+      const t = e.touches[0];
+      updatePointer(t.clientX,t.clientY);
+    },{ passive:true });
+
+    window.addEventListener("touchmove",(e)=>{
+      const t = e.touches[0];
+      updatePointer(t.clientX,t.clientY);
+    },{ passive:true });
+
+    imageStage.addEventListener("mouseleave", resetTilt);
+    imageStage.addEventListener("touchend", resetTilt);
+
+    nextLineBtn.addEventListener("click",(e)=>{
+      nextThought(e.clientX || window.innerWidth/2, e.clientY || window.innerHeight/2);
+    });
+
+    nextBtn.addEventListener("click",(e)=>{
+      createHeart(e.clientX || window.innerWidth/2, e.clientY || window.innerHeight/2);
+    });
+
+    document.addEventListener("keydown",(e)=>{
+      if(e.key === "Escape"){
+        lightbox.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+    });
+
+    updatePointer(window.innerWidth/2, window.innerHeight/3);
+  </script>
 </body>
 </html>
+]]>
