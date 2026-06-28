@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Earth's Hidden Art</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0b1020,#151d35);
+    color:white;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    padding:60px 0;
+    text-align:center;
+}
+
+h1{
+    font-size:3rem;
+    margin-bottom:15px;
+    animation:fadeUp 1s ease;
+}
+
+.subtitle{
+    max-width:700px;
+    margin:auto;
+    color:#cfcfcf;
+    line-height:1.8;
+    animation:fadeUp 1.3s ease;
+}
+
+.gallery{
+    margin-top:50px;
+    animation:fadeUp 1.6s ease;
+}
+
+.gallery img{
+    width:100%;
+    border-radius:20px;
+    box-shadow:0 10px 40px rgba(0,0,0,.5);
+}
+
+.info{
+    max-width:800px;
+    margin:50px auto;
+    line-height:2;
+    color:#e8e8e8;
+    animation:fadeUp 2s ease;
+}
+
+.highlight{
+    color:#ffd166;
+}
+
+.credit{
+    margin-top:25px;
+    color:#9ea7c0;
+    font-size:.9rem;
+}
+
+.next-btn{
+    display:inline-block;
+    margin-top:40px;
+    padding:15px 35px;
+    background:#ff6b81;
+    color:white;
+    text-decoration:none;
+    border-radius:50px;
+    font-weight:600;
+    transition:.3s;
+    box-shadow:0 5px 20px rgba(255,107,129,.4);
+}
+
+.next-btn:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 30px rgba(255,107,129,.6);
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🌍 Earth's Hidden Art</h1>
+
+    <p class="subtitle">
+        These aren't paintings, illustrations, or AI-generated images.
+        They are real satellite photographs captured from space by NASA's
+        Landsat missions.
+    </p>
+
+    <div class="gallery">
+        <img src="ASTHA.png" alt="NASA Landsat Art">
+    </div>
+
+    <div class="info">
+
+        <p>
+            From winding rivers and desert dunes to mountain ridges and
+            agricultural patterns, Earth creates artwork on a scale too large
+            for us to see from the ground.
+        </p>
+
+        <br>
+
+        <p>
+            Sometimes beauty appears only when viewed from a different
+            perspective.
+        </p>
+
+        <br>
+
+        <p class="highlight">
+            Just like these landscapes reveal hidden patterns from space,
+            some people bring unexpected beauty into our lives.
+        </p>
+
+        <p style="margin-top:20px;">
+            And this little surprise reminded me of you ✨
+        </p>
+
+        <div class="credit">
+            Imagery Source: NASA / USGS Landsat Program
+        </div>
+
+    </div>
+
+    <a href="gallery.html" class="next-btn">
+        Next Surprise ➜
+    </a>
+
+</div>
+
+</body>
+</html>
