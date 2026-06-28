@@ -1,31 +1,25 @@
-<![CDATA[
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Things That Remind Me Of You</title>
-  <style>
+<style>
     *{
       margin:0;
       padding:0;
       box-sizing:border-box;
       font-family:'Poppins',sans-serif;
+      -webkit-tap-highlight-color:transparent;
     }
 
     :root{
       --x:50%;
       --y:50%;
-      --bg1:#040814;
-      --bg2:#0d1e4a;
-      --bg3:#1a1038;
-      --blue:#6dbdff;
-      --cyan:#98f3ff;
-      --violet:#b399ff;
+      --bg1:#1a0821;
+      --bg2:#3a0f43;
+      --bg3:#0f1d4a;
       --pink:#ff88cb;
-      --gold:#ffd166;
-      --text:#f7fbff;
-      --muted:rgba(255,255,255,.74);
+      --pink2:#ff69b4;
+      --rose:#ff9acb;
+      --violet:#b399ff;
+      --blue:#6dbdff;
+      --text:#fff8fd;
+      --muted:rgba(255,245,252,.78);
     }
 
     html,body{
@@ -37,10 +31,10 @@
       min-height:100svh;
       overflow-x:hidden;
       background:
-        radial-gradient(circle at var(--x) var(--y), rgba(152,243,255,.10), transparent 14%),
-        radial-gradient(circle at 14% 10%, rgba(109,189,255,.15), transparent 22%),
-        radial-gradient(circle at 86% 16%, rgba(179,153,255,.14), transparent 20%),
-        radial-gradient(circle at 50% 92%, rgba(255,136,203,.08), transparent 26%),
+        radial-gradient(circle at var(--x) var(--y), rgba(255,182,220,.14), transparent 16%),
+        radial-gradient(circle at 18% 14%, rgba(255,136,203,.22), transparent 26%),
+        radial-gradient(circle at 84% 18%, rgba(179,153,255,.18), transparent 22%),
+        radial-gradient(circle at 50% 90%, rgba(109,189,255,.12), transparent 26%),
         linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
       color:var(--text);
       position:relative;
@@ -50,7 +44,7 @@
       content:"";
       position:fixed;
       inset:0;
-      background:radial-gradient(circle at center, rgba(255,255,255,.04), transparent 60%);
+      background:radial-gradient(circle at center, rgba(255,255,255,.05), transparent 60%);
       pointer-events:none;
       z-index:0;
     }
@@ -69,13 +63,18 @@
       pointer-events:none;
     }
 
-    .floaty{ color:rgba(255,255,255,.22); }
-    .bg-heart{
-      color:rgba(255,136,203,.16);
-      text-shadow:0 0 12px rgba(255,136,203,.10);
+    .floaty{
+      color:rgba(255,255,255,.20);
     }
+
+    .bg-heart{
+      color:rgba(255,160,210,.24);
+      text-shadow:0 0 14px rgba(255,136,203,.20);
+      opacity:.28;
+    }
+
     .bg-emoji{
-      opacity:.12;
+      opacity:.10;
       filter:drop-shadow(0 0 10px rgba(255,255,255,.05));
     }
 
@@ -84,25 +83,25 @@
       width:34vmax;
       height:34vmax;
       border-radius:50%;
-      filter:blur(50px);
-      opacity:.2;
+      filter:blur(55px);
+      opacity:.24;
       animation:drift 16s ease-in-out infinite;
     }
 
-    .orb.one{background:#4eaaff; left:-10%; top:6%;}
-    .orb.two{background:#ad95ff; right:-10%; top:14%; animation-delay:-5s;}
-    .orb.three{background:#ff88cb; left:28%; bottom:-16%; animation-delay:-9s;}
+    .orb.one{background:#ff88cb; left:-10%; top:6%;}
+    .orb.two{background:#b399ff; right:-10%; top:14%; animation-delay:-5s;}
+    .orb.three{background:#6dbdff; left:28%; bottom:-16%; animation-delay:-9s;}
 
     .cursor-light{
       position:fixed;
-      width:220px;
-      height:220px;
+      width:240px;
+      height:240px;
       left:0;
       top:0;
       border-radius:50%;
       transform:translate(-50%,-50%);
       pointer-events:none;
-      background:radial-gradient(circle, rgba(255,255,255,.18), rgba(109,189,255,.10) 32%, rgba(255,255,255,0) 70%);
+      background:radial-gradient(circle, rgba(255,255,255,.20), rgba(255,136,203,.12) 32%, rgba(255,255,255,0) 72%);
       mix-blend-mode:screen;
       z-index:1;
     }
@@ -125,9 +124,9 @@
       display:inline-block;
       padding:8px 14px;
       border-radius:999px;
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.08);
-      color:rgba(255,255,255,.78);
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.10);
+      color:rgba(255,245,252,.85);
       font-size:.8rem;
       letter-spacing:.08em;
       text-transform:uppercase;
@@ -138,7 +137,7 @@
       font-size:clamp(2.2rem,7vw,4.2rem);
       margin-bottom:12px;
       line-height:1.06;
-      text-shadow:0 0 24px rgba(109,189,255,.16);
+      text-shadow:0 0 26px rgba(255,136,203,.18);
     }
 
     .subtitle{
@@ -157,8 +156,8 @@
 
     .card{
       position:relative;
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.09);
+      border:1px solid rgba(255,255,255,.10);
       border-radius:26px;
       padding:22px 18px;
       min-height:220px;
@@ -176,8 +175,8 @@
       position:absolute;
       inset:0;
       background:
-        radial-gradient(circle at var(--x) var(--y), rgba(255,255,255,.16), transparent 14%),
-        linear-gradient(135deg, rgba(109,189,255,.08), rgba(179,153,255,.06), rgba(255,136,203,.05));
+        radial-gradient(circle at var(--x) var(--y), rgba(255,255,255,.18), transparent 14%),
+        linear-gradient(135deg, rgba(255,136,203,.10), rgba(179,153,255,.08), rgba(109,189,255,.06));
       pointer-events:none;
     }
 
@@ -189,7 +188,7 @@
       width:110px;
       height:110px;
       border-radius:50%;
-      background:radial-gradient(circle, rgba(109,189,255,.20), transparent 68%);
+      background:radial-gradient(circle, rgba(255,136,203,.22), transparent 68%);
       filter:blur(10px);
       pointer-events:none;
     }
@@ -197,13 +196,22 @@
     .card:hover{
       transform:translateY(-8px);
       box-shadow:0 22px 44px rgba(0,0,0,.28);
-      border-color:rgba(255,255,255,.14);
+      border-color:rgba(255,255,255,.16);
     }
 
     .card.open{
-      background:rgba(255,255,255,.10);
-      border-color:rgba(151,220,255,.24);
-      box-shadow:0 24px 50px rgba(109,189,255,.10), 0 22px 42px rgba(0,0,0,.25);
+      background:rgba(255,255,255,.12);
+      border-color:rgba(255,190,225,.28);
+      box-shadow:0 24px 50px rgba(255,136,203,.10), 0 22px 42px rgba(0,0,0,.25);
+    }
+
+    .special-card{
+      border-color:rgba(255,209,102,.22);
+      box-shadow:0 16px 40px rgba(255,209,102,.10), 0 16px 36px rgba(0,0,0,.22);
+    }
+
+    .special-card::after{
+      background:radial-gradient(circle, rgba(255,209,102,.26), transparent 68%);
     }
 
     .card-inner{
@@ -212,7 +220,9 @@
       height:100%;
       display:flex;
       flex-direction:column;
-      align-items:flex-start;
+      align-items:center;
+      justify-content:flex-start;
+      text-align:center;
     }
 
     .emoji{
@@ -225,6 +235,7 @@
       font-size:1.3rem;
       margin-bottom:8px;
       line-height:1.2;
+      text-align:center;
     }
 
     .mini{
@@ -232,12 +243,14 @@
       font-size:.92rem;
       line-height:1.6;
       margin-bottom:10px;
+      text-align:center;
     }
 
     .tap{
-      color:rgba(255,255,255,.78);
+      color:rgba(255,245,252,.82);
       font-size:.88rem;
       transition:opacity .25s ease, transform .25s ease;
+      text-align:center;
     }
 
     .hidden{
@@ -247,13 +260,14 @@
       transform:translateY(10px);
       transition:max-height .45s ease, opacity .3s ease, transform .3s ease, margin-top .3s ease;
       margin-top:0;
-      color:rgba(255,255,255,.94);
+      color:rgba(255,250,253,.95);
       line-height:1.65;
       font-size:.94rem;
+      text-align:center;
     }
 
     .card.open .hidden{
-      max-height:120px;
+      max-height:140px;
       opacity:1;
       transform:translateY(0);
       margin-top:10px;
@@ -267,20 +281,22 @@
     .badge{
       display:inline-flex;
       align-items:center;
+      justify-content:center;
       gap:8px;
       margin-top:auto;
       padding:8px 12px;
       border-radius:999px;
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.10);
       font-size:.78rem;
-      color:rgba(255,255,255,.84);
+      color:rgba(255,250,253,.88);
+      text-align:center;
     }
 
     .final-card{
       margin-top:30px;
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.09);
+      border:1px solid rgba(255,255,255,.10);
       border-radius:30px;
       padding:28px 22px;
       text-align:center;
@@ -312,10 +328,11 @@
     }
 
     .final-card p{
-      color:rgba(255,255,255,.82);
+      color:rgba(255,245,252,.84);
       line-height:1.8;
       max-width:700px;
       margin:0 auto;
+      text-align:center;
     }
 
     .actions{
@@ -342,8 +359,8 @@
     }
 
     .btn.primary{
-      background:linear-gradient(90deg,var(--blue),var(--violet));
-      box-shadow:0 12px 28px rgba(109,189,255,.24);
+      background:linear-gradient(90deg,var(--pink2),var(--violet));
+      box-shadow:0 12px 28px rgba(255,136,203,.24);
     }
 
     .btn.secondary{
@@ -402,36 +419,190 @@
       100%{opacity:0; transform:translate(-50%,-150px) scale(1.4);}
     }
 
+    @media (max-width:768px){
+      .container{
+        padding:28px 14px 40px;
+      }
+
+      .grid{
+        gap:16px;
+      }
+
+      .card{
+        min-height:190px;
+        padding:18px 16px;
+        border-radius:22px;
+      }
+
+      .emoji{
+        font-size:1.9rem;
+        margin-bottom:10px;
+      }
+
+      .card h2{
+        font-size:1.18rem;
+      }
+
+      .mini{
+        font-size:.88rem;
+        margin-bottom:8px;
+      }
+
+      .hidden{
+        font-size:.9rem;
+      }
+
+      .badge{
+        font-size:.74rem;
+        padding:7px 10px;
+      }
+
+      .final-card{
+        padding:22px 18px;
+        border-radius:24px;
+      }
+    }
+
     @media (max-width:640px){
       .cursor-light{
-        width:150px;
-        height:150px;
+        width:120px;
+        height:120px;
       }
 
       .container{
-        padding:28px 12px 40px;
+        padding:22px 10px 34px;
+      }
+
+      .hero{
+        margin-bottom:20px;
+      }
+
+      .eyebrow{
+        font-size:.72rem;
+        padding:7px 12px;
+        margin-bottom:12px;
+      }
+
+      h1{
+        font-size:clamp(1.9rem,9vw,2.7rem);
+        margin-bottom:10px;
+      }
+
+      .subtitle{
+        font-size:.92rem;
+        line-height:1.65;
+        max-width:330px;
       }
 
       .grid{
         grid-template-columns:1fr;
+        gap:14px;
       }
 
       .card{
-        min-height:200px;
-        border-radius:22px;
+        min-height:168px;
+        border-radius:20px;
+        padding:16px 14px;
+      }
+
+      .card:hover{
+        transform:none;
+      }
+
+      .emoji{
+        font-size:1.7rem;
+        margin-bottom:8px;
+      }
+
+      .card h2{
+        font-size:1.08rem;
+        margin-bottom:6px;
+      }
+
+      .mini{
+        font-size:.84rem;
+        line-height:1.45;
+        margin-bottom:8px;
+      }
+
+      .tap{
+        font-size:.82rem;
+      }
+
+      .hidden{
+        font-size:.86rem;
+        line-height:1.5;
+      }
+
+      .card.open .hidden{
+        max-height:120px;
+        margin-top:8px;
+      }
+
+      .badge{
+        margin-top:10px;
+        font-size:.7rem;
+        padding:6px 10px;
+        line-height:1.2;
       }
 
       .final-card{
-        border-radius:24px;
+        margin-top:22px;
+        border-radius:20px;
+        padding:20px 14px;
+      }
+
+      .final-card h2{
+        font-size:1.35rem;
+      }
+
+      .final-card p{
+        font-size:.9rem;
+        line-height:1.65;
       }
 
       .actions{
         flex-direction:column;
+        gap:10px;
+        margin-top:18px;
       }
 
       .btn{
         width:100%;
         min-width:0;
+        padding:13px 18px;
+        font-size:.92rem;
+      }
+    }
+
+    @media (max-width:420px){
+      .container{
+        padding:18px 8px 28px;
+      }
+
+      .card{
+        min-height:160px;
+        padding:14px 12px;
+      }
+
+      .emoji{
+        font-size:1.55rem;
+      }
+
+      .card h2{
+        font-size:1rem;
+      }
+
+      .mini{
+        font-size:.8rem;
+      }
+
+      .hidden{
+        font-size:.84rem;
+      }
+
+      .badge{
+        font-size:.68rem;
       }
     }
   </style>
@@ -447,7 +618,7 @@
 
   <div class="container">
     <div class="hero">
-      <div class="eyebrow">💙 Little things, big memories</div>
+      <div class="eyebrow">💗 Little things, big memories</div>
       <h1>Things That Remind Me Of You ✨</h1>
       <p class="subtitle">
         Every person leaves little things behind in our memories. These are yours.
@@ -455,143 +626,30 @@
     </div>
 
     <div class="grid">
-      <div class="card" onclick="openCard(this, event)">
-        <div class="card-inner">
-          <div class="emoji">🌸</div>
-          <h2>Jasmine</h2>
-          <div class="mini">Soft and memorable.</div>
-          <div class="tap">Tap to open</div>
-          <div class="hidden">Your favorite flower.</div>
-          <div class="badge">favorite flower</div>
-        </div>
-      </div>
-
-      <div class="card" onclick="openCard(this, event)">
-        <div class="card-inner">
-          <div class="emoji">🎵</div>
-          <h2>Harleys In Hawaii</h2>
-          <div class="mini">One song, one memory.</div>
-          <div class="tap">Tap to open</div>
-          <div class="hidden">Can't hear this without thinking of you.</div>
-          <div class="badge">playlist memory</div>
-        </div>
-      </div>
-
-      <div class="card" onclick="openCard(this, event)">
-        <div class="card-inner">
-          <div class="emoji">✨</div>
-          <h2>Jhumka</h2>
-          <div class="mini">A tiny detail that stayed.</div>
-          <div class="tap">Tap to open</div>
-          <div class="hidden">The earring wali picture.</div>
-          <div class="badge">little detail</div>
-        </div>
-      </div>
-
-      <div class="card" onclick="openCard(this, event)">
-        <div class="card-inner">
-          <div class="emoji">🍝</div>
-          <h2>White Sauce Pasta</h2>
-          <div class="mini">Comfort in a plate.</div>
-          <div class="tap">Tap to open</div>
-          <div class="hidden">Comfort food approved by Astha.</div>
-          <div class="badge">comfort food</div>
-        </div>
-      </div>
-
-      <div class="card" onclick="openCard(this, event)">
-        <div class="card-inner">
-          <div class="emoji">🥣</div>
-          <h2>Pani Puri</h2>
-          <div class="mini">Fun memories in one bite.</div>
-          <div class="tap">Tap to open</div>
-          <div class="hidden">One plate is never enough.</div>
-          <div class="badge">chaat energy</div>
-        </div>
-      </div>
-
-      <div class="card" onclick="openCard(this, event)">
-        <div class="card-inner">
-          <div class="emoji">🍫</div>
-          <h2>Chocolates</h2>
-          <div class="mini">Sweet things with your name.</div>
-          <div class="tap">Tap to open</div>
-          <div class="hidden">Dairy Milk Fruit & Nut and Bournville Cranberry 70%.</div>
-          <div class="badge">sweet list</div>
-        </div>
-      </div>
-
-      <div class="card" onclick="openCard(this, event)">
-        <div class="card-inner">
-          <div class="emoji">🎮</div>
-          <h2>BGMI</h2>
-          <div class="mini">Where memories started.</div>
-          <div class="tap">Tap to open</div>
-          <div class="hidden">So many memories started here.</div>
-          <div class="badge">shared memories</div>
-        </div>
-      </div>
-
-      <div class="card" onclick="openCard(this, event)">
-        <div class="card-inner">
-          <div class="emoji">🔫</div>
-          <h2>AKM</h2>
-          <div class="mini">Birthday girl energy.</div>
-          <div class="tap">Tap to open</div>
-          <div class="hidden">The favorite weapon of the birthday girl.</div>
-          <div class="badge">classic you</div>
-        </div>
-      </div>
-
-      <div class="card" onclick="openCard(this, event)">
-        <div class="card-inner">
-          <div class="emoji">💙</div>
-          <h2>Blue</h2>
-          <div class="mini">Your color. Your vibe.</div>
-          <div class="tap">Tap to open</div>
-          <div class="hidden">Blue always reminds me of you.</div>
-          <div class="badge">favorite color</div>
-        </div>
-      </div>
-
-      <div class="card" onclick="openCard(this, event)">
-        <div class="card-inner">
-          <div class="emoji">🕶️</div>
-          <h2>Gojo Satoru</h2>
-          <div class="mini">Too cool to ignore.</div>
-          <div class="tap">Tap to open</div>
-          <div class="hidden">Every Gojo mention reminds me of you.</div>
-          <div class="badge">favorite character</div>
-        </div>
-      </div>
-
-      <div class="card" onclick="openCard(this, event)">
-        <div class="card-inner">
-          <div class="emoji">🎤</div>
-          <h2>BTS</h2>
-          <div class="mini">Music leaves traces too.</div>
-          <div class="tap">Tap to open</div>
-          <div class="hidden">Your favorite band deserved a card too.</div>
-          <div class="badge">favorite band</div>
-        </div>
-      </div>
-
-      <div class="card" onclick="openCard(this, event)">
-        <div class="card-inner">
-          <div class="emoji">🌙</div>
-          <h2>Late Night Thoughts</h2>
-          <div class="mini">The softest memory.</div>
-          <div class="tap">Tap to open</div>
-          <div class="hidden">You are remembered in silence too.</div>
-          <div class="badge">soft memory</div>
-        </div>
-      </div>
+      <div class="card" onclick="openCard(this, event)"><div class="card-inner"><div class="emoji">🌸</div><h2>Jasmine</h2><div class="mini">Soft and memorable.</div><div class="tap">Tap to open</div><div class="hidden">Your favorite flower.</div><div class="badge">favorite flower</div></div></div>
+      <div class="card" onclick="openCard(this, event)"><div class="card-inner"><div class="emoji">🎵</div><h2>Harleys In Hawaii</h2><div class="mini">One song, one memory.</div><div class="tap">Tap to open</div><div class="hidden">Can't hear this without thinking of you.</div><div class="badge">playlist memory</div></div></div>
+      <div class="card" onclick="openCard(this, event)"><div class="card-inner"><div class="emoji">✨</div><h2>Jhumka</h2><div class="mini">A tiny detail that stayed.</div><div class="tap">Tap to open</div><div class="hidden">The earring wali picture.</div><div class="badge">little detail</div></div></div>
+      <div class="card" onclick="openCard(this, event)"><div class="card-inner"><div class="emoji">🍝</div><h2>White Sauce Pasta</h2><div class="mini">Comfort in a plate.</div><div class="tap">Tap to open</div><div class="hidden">Comfort food approved by Astha.</div><div class="badge">comfort food</div></div></div>
+      <div class="card" onclick="openCard(this, event)"><div class="card-inner"><div class="emoji">🥣</div><h2>Pani Puri</h2><div class="mini">Fun memories in one bite.</div><div class="tap">Tap to open</div><div class="hidden">One plate is never enough.</div><div class="badge">chaat energy</div></div></div>
+      <div class="card" onclick="openCard(this, event)"><div class="card-inner"><div class="emoji">🍫</div><h2>Chocolates</h2><div class="mini">Sweet things with your name.</div><div class="tap">Tap to open</div><div class="hidden">Dairy Milk Fruit & Nut and Bournville Cranberry 70%.</div><div class="badge">sweet list</div></div></div>
+      <div class="card" onclick="openCard(this, event)"><div class="card-inner"><div class="emoji">🎂</div><h2>Dark Forest Cake</h2><div class="mini">The birthday cake card.</div><div class="tap">Tap to open</div><div class="hidden">Your favorite cake — dark forest.</div><div class="badge">favorite cake</div></div></div>
+      <div class="card" onclick="openCard(this, event)"><div class="card-inner"><div class="emoji">🧡</div><h2>Doritos</h2><div class="mini">Crunchy little favorite.</div><div class="tap">Tap to open</div><div class="hidden">Your snack card had to be here too.</div><div class="badge">favorite snack</div></div></div>
+      <div class="card" onclick="openCard(this, event)"><div class="card-inner"><div class="emoji">🎮</div><h2>BGMI</h2><div class="mini">Where memories started.</div><div class="tap">Tap to open</div><div class="hidden">So many memories started here.</div><div class="badge">shared memories</div></div></div>
+      <div class="card" onclick="openCard(this, event)"><div class="card-inner"><div class="emoji">🔫</div><h2>AKM</h2><div class="mini">Birthday girl energy.</div><div class="tap">Tap to open</div><div class="hidden">The favorite weapon of the birthday girl.</div><div class="badge">classic you</div></div></div>
+      <div class="card special-card" onclick="openCard(this, event)"><div class="card-inner"><div class="emoji">🎁</div><h2>Surprise Card</h2><div class="mini">A tiny hidden hint.</div><div class="tap">Tap to open</div><div class="hidden">Check your BGMI account 👀</div><div class="badge">special surprise</div></div></div>
+      <div class="card" onclick="openCard(this, event)"><div class="card-inner"><div class="emoji">💙</div><h2>Blue</h2><div class="mini">Your color. Your vibe.</div><div class="tap">Tap to open</div><div class="hidden">Blue always reminds me of you.</div><div class="badge">favorite color</div></div></div>
+      <div class="card" onclick="openCard(this, event)"><div class="card-inner"><div class="emoji">🕶️</div><h2>Gojo Satoru</h2><div class="mini">Too cool to ignore.</div><div class="tap">Tap to open</div><div class="hidden">Every Gojo mention reminds me of you.</div><div class="badge">favorite character</div></div></div>
+      <div class="card" onclick="openCard(this, event)"><div class="card-inner"><div class="emoji">🎤</div><h2>BTS</h2><div class="mini">Music leaves traces too.</div><div class="tap">Tap to open</div><div class="hidden">Your favorite band deserved a card too.</div><div class="badge">favorite band</div></div></div>
+      <div class="card" onclick="openCard(this, event)"><div class="card-inner"><div class="emoji">🏠</div><h2>Oshurin</h2><div class="mini">The home name card.</div><div class="tap">Tap to open</div><div class="hidden">Your home name — Oshurin.</div><div class="badge">home name</div></div></div>
+      <div class="card" onclick="openCard(this, event)"><div class="card-inner"><div class="emoji">💫</div><h2>Oshin</h2><div class="mini">Short, sweet, yours.</div><div class="tap">Tap to open</div><div class="hidden">Your nickname — Oshin.</div><div class="badge">nickname</div></div></div>
+      <div class="card" onclick="openCard(this, event)"><div class="card-inner"><div class="emoji">📝</div><h2>Astha Kalo</h2><div class="mini">Your full name card.</div><div class="tap">Tap to open</div><div class="hidden">Your full name, the way I know it — Astha Kalo ❤️</div><div class="badge">your name</div></div></div>
+      <div class="card" onclick="openCard(this, event)"><div class="card-inner"><div class="emoji">🌙</div><h2>Late Night Thoughts</h2><div class="mini">The softest memory.</div><div class="tap">Tap to open</div><div class="hidden">You are remembered in silence too.</div><div class="badge">soft memory</div></div></div>
     </div>
 
     <div class="final-card">
-      <h2>One More Thing... ❤️</h2>
+      <h2>One More Thing... 💫</h2>
       <p>
-        All these things remind me of you. But my favorite thing isn’t jasmine, or pasta, or BGMI, or even blue. It’s you.
+        All these things remind me of you. But my favorite thing isn’t jasmine, or cake, or BGMI, or even blue. It’s you ❤️.
       </p>
 
       <div class="actions">
@@ -602,7 +660,7 @@
   </div>
 
   <script>
-    const bgEmojis = ["💙","✨","🌸","🎵","🪐","💫"];
+    const bgEmojis = ["💗","💙","✨","🌸","💫","💖"];
     const root = document.documentElement;
     const cursorLight = document.getElementById("cursorLight");
     const cards = document.querySelectorAll(".card");
@@ -610,7 +668,7 @@
     const nextBtn = document.getElementById("nextBtn");
     const sky = document.getElementById("sky");
 
-    for(let i=0;i<22;i++){
+    for(let i=0;i<10;i++){
       const star = document.createElement("div");
       star.className = "floaty";
       star.textContent = Math.random() > 0.5 ? "✦" : "⋆";
@@ -622,15 +680,15 @@
       sky.appendChild(star);
     }
 
-    for(let i=0;i<8;i++){
+    for(let i=0;i<28;i++){
       const heart = document.createElement("div");
       heart.className = "bg-heart";
       heart.textContent = Math.random() > 0.5 ? "❤" : "♡";
       heart.style.left = Math.random()*100 + "vw";
-      heart.style.bottom = (-20 - Math.random()*160) + "px";
-      heart.style.fontSize = (10 + Math.random()*12) + "px";
-      heart.style.animationDuration = (15 + Math.random()*16) + "s";
-      heart.style.animationDelay = (-Math.random()*18) + "s";
+      heart.style.bottom = (-20 - Math.random()*180) + "px";
+      heart.style.fontSize = (12 + Math.random()*20) + "px";
+      heart.style.animationDuration = (12 + Math.random()*18) + "s";
+      heart.style.animationDelay = (-Math.random()*20) + "s";
       sky.appendChild(heart);
     }
 
@@ -665,7 +723,7 @@
     function createHeart(x,y){
       const heart = document.createElement("div");
       heart.className = "heart";
-      heart.textContent = ["💙","✨","💖","🌸","💫"][Math.floor(Math.random()*5)];
+      heart.textContent = ["💗","✨","💖","🌸","💫"][Math.floor(Math.random()*5)];
       heart.style.left = x + "px";
       heart.style.top = y + "px";
       document.body.appendChild(heart);
@@ -682,6 +740,7 @@
 
     cards.forEach(card=>{
       card.addEventListener("mousemove",(e)=>{
+        if(window.innerWidth <= 768) return;
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
@@ -695,13 +754,14 @@
       });
 
       card.addEventListener("touchstart",(e)=>{
+        if(window.innerWidth > 768) return;
         const t = e.touches[0];
         const rect = card.getBoundingClientRect();
         const x = t.clientX - rect.left;
         const y = t.clientY - rect.top;
-        const ry = ((x / rect.width) - 0.5) * 7;
-        const rx = ((y / rect.height) - 0.5) * -7;
-        card.style.transform = `perspective(950px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+        const ry = ((x / rect.width) - 0.5) * 4;
+        const rx = ((y / rect.height) - 0.5) * -4;
+        card.style.transform = `perspective(950px) rotateX(${rx}deg) rotateY(${ry}deg) scale(0.99)`;
       },{passive:true});
 
       card.addEventListener("touchend",()=>{
@@ -722,7 +782,7 @@
 
     window.addEventListener("mousemove",(e)=>{
       updatePointer(e.clientX,e.clientY);
-      if(Math.random() > 0.988) createSpark(e.clientX,e.clientY);
+      if(window.innerWidth > 768 && Math.random() > 0.988) createSpark(e.clientX,e.clientY);
     });
 
     window.addEventListener("touchstart",(e)=>{
